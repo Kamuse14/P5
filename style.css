@@ -32,8 +32,8 @@ body {
 	--bg-color: #F3E9F1;
 	--bg-light-color: #FBF7FA;
 	--bg-dark-color: #975389;
-	--bg-orange: #EB8B27;
-	--bg-violet: #915CF5;
+	--bg-orange: #F48C00;
+	--bg-violet: #8F53FF;
 	--txt-color: #3E3E3E;
 }
 
@@ -118,7 +118,7 @@ header ul {
   	margin-top: 2rem;
  }
 
-button {
+#menu-button {
 	z-index: 10;
 	cursor: pointer;
 	background: none;
@@ -138,7 +138,7 @@ button {
   	transition: transform 200ms ease-in-out;
 }
 
-button:active + #menu-sidebar {
+#menu-button:active + #menu-sidebar {
 	transform: translateX(0);
 }
 
@@ -190,10 +190,25 @@ figcaption {
 }
 
 #produits {
-	margin-bottom: 30vh;
+	margin-bottom: 25vh;
+	text-align: center;
 }
 
+/*  /////////////////////// les boutons ////////////////////////////// */
  
+#addbutton {
+	cursor: pointer;
+	background-color: var(--bg-dark-color);
+	box-shadow: 1px 1px 4px #975389;
+	border: none;
+	border-radius: 50px;
+	font-size: 1.5em;
+	color: white;
+	padding: 0.8em;
+}
+
+
+ /* //////////////////////////// MEDIAS //////////////////////////// */ 
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) { 
 	h1 {
@@ -218,7 +233,7 @@ figcaption {
 	}
 
 	#produits {
-		margin-bottom: 20vh;
+		margin-bottom: 22vh;
 	}
 
 	figure {
