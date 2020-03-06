@@ -39,12 +39,12 @@ h1 .fa-shopping-cart {
 	background: linear-gradient(135deg,  #EB8B27 20%, #915CF5 80%); 
 	-webkit-background-clip: text;
     color: transparent;
-    font-size: 1em;
+    font-size: 0.8em;
     padding: 0.5rem;
 }
 
 h1 {
- 	font: 3em "Finger Paint";
+ 	font: 1.8em "Finger Paint";
  	color: var(--txt-color);
  	margin-top: 0.5rem;
 }
@@ -87,7 +87,7 @@ button {
 	top: 0;
 	left: 0;
 	background-color: #FFF;
-  	transform: translateX(0);
+  	transform: translateX(-100%);
   	transition: transform 200ms ease-in-out;
 }
 
@@ -96,7 +96,7 @@ button {
   transform: translateX(0);
 }
 /* version sans js  (aucune ne fonctionne)*/
-button:active #menu-sidebar {
+button:active + #menu-sidebar {
 	transform: translateX(0);
   	transition: transform 200ms ease-in-out;
 }
@@ -131,22 +131,23 @@ button:active #menu-sidebar {
 
 /*  //// articles //// */
 
-
-
 figure {
 	box-shadow: 2px 2px 10px #F3E9F1;
 	width: 80%;
 	height: 50vh;
-	display: flex;
-	justify-content: space-around;
+	
 }
 
-figure a,  figcaption, h3 {
-	margin: auto 2rem;
+figcaption, h3 {
+	margin: 2rem auto;
+	text-align: center;
 
 }
 
-
+figure img {
+	max-width: 100%;
+	max-height: 60%;
+}
 
  footer {
  	background-color: var(--bg-color);
@@ -177,6 +178,18 @@ figure a,  figcaption, h3 {
 		margin-top: -0.5rem;
 	  font-size: 0.9em;
 	}
+
+	figure {
+	box-shadow: 2px 2px 10px #F3E9F1;
+	width: 80%;
+	height: 50vh;
+	display: flex;
+	justify-content: space-around;
+}
+
+	figure img {
+	max-width: 50%;
+}
 
 /* Medium devices (tablets, 768px and up)*/
 @media (min-width: 768px) { 
