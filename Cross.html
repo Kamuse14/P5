@@ -15,7 +15,7 @@
 	<script type="text/javascript">
 
 		function afficheProduit(objectsArray){
-			return new Produit(objectsArray[0], document.getElementById("furnitures"));
+			return new Produit(objectsArray[0], document.getElementById("furniture"));
 		}
 
 		window.produits = {};
@@ -32,7 +32,7 @@
 		xhr.send();
 	</script>
 </head>
-
+<!-- -->
 <body>
 	<header>
 		<div id="logo">
@@ -42,9 +42,9 @@
 			<div id="menu-content">
 				<nav>
 					<ul>
-						<li><a  href="index.html"><i class="fas fa-home"></i>Accueil</a></li>
-						<li><a href="produits.html"><i class="fas fa-store"></i>Produit<i class="fas fa-caret-down"></i> </a></li>
-						<li><a href="panier.html"><i class="fas fa-shopping-cart"></i>Panier</a></li>
+						<li><a  href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+						<li><a href="produits.html"><i class="fas fa-store"></i> Produit<i class="fas fa-caret-down"></i> </a></li>
+						<li><a href="panier.html"><i class="fas fa-shopping-cart"></i> Panier</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -68,11 +68,8 @@
 
 	<section id="index">
 		<h2>La Cross Table</h2>
-		<div id="produits">
-			<div id="furnitures">
-				
-			</div>
-			<button id="addbutton" type="submit"><i class="fas fa-cart-plus"></i> Ajouter au panier</button>						
+		<div id="furniture">
+									
 		</div>		
 	</section>
 

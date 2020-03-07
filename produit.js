@@ -3,23 +3,34 @@ class Produit{
 		this.name = data.name.split(" ")[0];
 		this.nameLong = data.name;
 		this.price = data.price;
-		this.description = data.description;
 		this.image = data.imageUrl;
 		window.produits[this.name] = this;
 
-		this.DOM = document.createElement("figure");
-		this.DOM.id = this.name;
-		/*this.DOM.href = this.name+.html;*/
+		this.DOM = document.createElement("div");
+		
 		target.appendChild(this.DOM);
 		this.affichageAccueil();
 	}
-	affichageAccueil(){
+	/*affichageAccueil(){
 		this.DOM.innerHTML = `
 			<img src="${this.image}" alt="${this.nameLong}"/>
-			<figcaption>${this.nameLong}</figcaption>
-			<p>${this.description}</p>
+			<figcaption>${this.nameLong}</figcaption>			
 			<h3>${this.price}€</h3>			
 		`;
 		this.DOM.className = "meuble";
+	}*/
+
+	affichageAccueil(){
+		this.DOM.innerHTML = `
+			<a href="${this.name}.html">
+				<figure id="${this.name}" class="meuble">
+					<img src="${this.image}" alt="${this.nameLong}"/>
+					<figcaption>${this.nameLong}</figcaption>			
+					<h3>${this.price}€</h3>	
+				</figure>
+			</a>		
+		`;
 	}
+
+
 }
