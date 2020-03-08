@@ -191,18 +191,20 @@ figure h3 {
 }
 
 /*  /////////////////// pages - produit //////////////////////// */
-div[id*="content"] figcaption, div[id*="content"] p, div[id*="content"] label {
+div[id*="content"] figcaption, div[id*="content"] p {
 	text-align: left;
 	padding: 1rem;
 	margin: 0;
 }
-div[id*="content"] label {
-	font-size: 0.8em;
+
+select {
+	border-radius: 5px;
+	color: var(--bg-violet);
 }
 
 /*  /////////////////////// les boutons ////////////////////////////// */
 
-#addbutton {
+#addbutton, #btn-envoyer {
 	cursor: pointer;
 	background-color: var(--bg-dark-color);
 	box-shadow: 1px 1px 4px #975389;
@@ -290,6 +292,13 @@ div[id*="content"] label {
 	}
 	figure img {
 		max-width: 35%;
+	}
+
+	#Crosscontent {
+		text-align: left;
+	}
+	select {
+		margin-left: 1rem;
 	}
 }
 /* Large devices (desktops, 992px and up)*/

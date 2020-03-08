@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>Orinoco - La Cross Table</title>
+	<title>Orinoco - Votre panier</title>
 	<meta name="description" content="Vous trouverez ici le mobilier de vos rêves..."/>
 
 	<link aria-label="puce Orinoco" rel="shortcut icon" type="image/png" href="images/logo.png">
@@ -11,11 +11,11 @@
 
 	<script src="https://kit.fontawesome.com/4f52cc11e8.js" crossorigin="anonymous"></script>
 	    
-	<script type="text/javascript" src="cross.js"></script>
+	<script type="text/javascript" src="produit.js"></script>
 	<script type="text/javascript">
 
-		function afficheProduit(objectsArray){
-			return new Produit(objectsArray[0], document.getElementById("furniture"));
+		function affichePanier(objectsArray){
+			
 		}
 
 		window.produits = {};
@@ -23,16 +23,16 @@
 		var xhr = new XMLHttpRequest();
 		xhr.addEventListener('load', function(e) {
 		  var response = e.target.responseText;
-		  afficheProduit(JSON.parse(response));
+		  afficheProduit(JSON.stringify(response));
 		});
 		xhr.addEventListener('error', function(e) {
 		  console.error('Request errored with status', e.target.status);
 		});
-		xhr.open('GET', 'http://localhost:3000/api/furniture/');
+		xhr.open('POST', 'http://localhost:3000/api/furniture/');
 		xhr.send();
 	</script>
 </head>
-<!-- -->
+
 <body>
 	<header>
 		<div id="logo">
@@ -43,8 +43,7 @@
 				<nav>
 					<ul>
 						<li><a  href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
-						<li><a href="Cross.html"><i class="fas fa-store"></i> Produit<i class="fas fa-caret-down"></i> </a></li>
-						<li><a href="panier.html"><i class="fas fa-shopping-cart"></i> Panier</a></li>
+						<li><a href="panier.html"><i class="fas fa-shopping-cart"></i> Panier <i class="fas fa-caret-down"></i></a></li>
 					</ul>
 				</nav>
 			</div>
@@ -53,9 +52,8 @@
   				<button id="menu-button" class="accordion-toggle"><i class="fas fa-bars"></i></button>
 		  		<nav class="accordion-content">
 				    <ul class="accordion-inner"> 
-				      	<li><a  href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
-						<li><a href="Cross.html"><i class="fas fa-store"></i> Produit <i class="fas fa-caret-down"></i></a></li>
-						<li><a href="panier.html"><i class="fas fa-shopping-cart"></i> Panier</a></li>
+				      	<li><a  href="index.html"><i class="fas fa-home"></i> Accueil <i class="fas fa-caret-down"></i></a></li>
+						<li><a href="panier.html"><i class="fas fa-shopping-cart"></i> Panier <i class="fas fa-caret-down"></i></a></li>
 				    </ul>
 				</nav>
 			</div>
@@ -64,10 +62,42 @@
 	</header>
 
 	<section id="index">
-		<h2>La Cross Table</h2>
-		<div id="furniture">
-									
-		</div>		
+		<h2>Votre panier</h2>
+		<div id="panier">
+						
+		</div>
+
+		<h2>Commander</h2>
+		<div id="formulaire">
+			<form id="form_1" method="post" action="">
+					<div class="form-group">
+						<label for="firstname">Prénom</label>
+						<input id="firstname" class="form-control" placeholder="Prénom" pattern="^[A-Z][a-z]{1,}" required />
+					</div>
+					<div class="form-group">
+						<label for="name">Nom</label>
+						<input id="name" class="form-control" placeholder="Nom" pattern="^[A-Z][a-z]{1,}" required />
+					</div>
+					<div class="form-group">
+						<div class="form-ss-group">
+							<label for="name">Adresse</label>
+							<input id="name" class="form-control" placeholder="Nom" required />
+						</div>
+						<div class="form-ss-group">
+							<label for="name">Ville</label>
+							<input id="name" class="form-control" placeholder="Nom" required />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="email">Adresse email</label>
+						<input id="email" class="form-control" type="email"  placeholder="something@email.com" required />
+					</div>
+					
+					<button class="" id="btn-envoyer" type="submit">
+						Envoyer
+					</button>
+				</form>		
+		</div>
 	</section>
 
 	<footer>

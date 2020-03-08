@@ -28,8 +28,9 @@ class Produit{
 			<div id="${this.name}content">
 				<figcaption>${this.nameLong}</figcaption>
 				<p>${this.description}</p>
-				<label for="mon_vernis">Choisissez un vernis</label>
+				
 				<select id="mon_vernis">
+					<option>-- Choix du vernis --</option>
 					<option>${this.dark}</option>
 					<option>${this.light}</option>
 					<option>${this.maho}</option>
