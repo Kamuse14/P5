@@ -24,6 +24,9 @@ body {
 	font-family: 'Noto Serif';
 	margin: 0;
 }
+li {
+  list-style: none;
+}
 
 /* //////////////////////////// UTILS //////////////////////////////// */
 
@@ -50,18 +53,13 @@ header {
 }
 
 h1 .fa-shopping-cart {
-	background: linear-gradient(135deg,  #EB8B27 20%, #915CF5 80%); 
-	-webkit-background-clip: text;
-    color: transparent;
-    font-size: 0.8em;
-    padding: 0.5rem;
-    margin-left: 1rem;
+  display: none;
 }
 
 h1 {
  	font: 1.8em "Finger Paint";
  	color: var(--txt-color);
- 	margin-top: 0.5rem;
+ 	margin: 0.5rem;
 }
 
 /* //////////////////////////// footer //////////////////////////////// */
@@ -111,52 +109,42 @@ nav a:hover {
 	display: none;
 }
 
-header ul {
- 	display: flex;
- 	justify-content: space-around;
- 	list-style: none;
-  	margin-top: 2rem;
- }
-
-#menu-button {
-	z-index: 10;
-	cursor: pointer;
-	background: none;
-	border:none;
-	font-size: 2.5rem;
-	margin: 0.5rem 0.5rem;
+/* le menu déroulant ou "accordion" */
+.accordion {
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
+  text-align: left;
+  margin: 1%;
 }
-
-#menu-sidebar {
-	position: fixed;
-	width: 80%;
+.accordion:hover .accordion-content {
+  max-height: 300px;
+}
+.accordion-content {
 	z-index: 5;
-	top: 0;
-	left: 0;
-	background-color: #FFF;
-  	transform: translateX(-100%);
-  	transition: transform 200ms ease-in-out;
+	transition: max-height 1s;
+	background: #f3e9f1;
+	overflow: hidden;
+	max-height: 0;
 }
-
-#menu-button:active + #menu-sidebar {
-	transform: translateX(0);
+.accordion-inner {
+  padding: 0 15px;
+  width: 110px;
 }
-
-#menu-sidebar-header {
-	background: linear-gradient(135deg,  #EB8B27 20%, #915CF5 80%); 
-	background-size: cover;
-	height: 4rem;
-}
-
-#menu-sidebar-body ul{
+.accordion-toggle {
+  transition: background 0.1s linear;
+  background: var(--bg-dark-color);
+  border-radius: 8px;
+  color: #fff;
   display: block;
-	padding: 2rem 2rem;
+  font-size: 30px;
+  margin: 0 0 10px;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
 }
-
-#menu-sidebar li {
-	padding: 0.9rem;
-  font-size: 1.3em;
-  list-style: none;
+.accordion-toggle:hover {
+  background: var(--bg-violet);
 }
 
 /* ///////////////////// fin menu hambuger //////////////////////// */
@@ -235,10 +223,27 @@ div[id*="content"] label {
 	  font-size: 1.5em;   
 	  margin-top: 0.9rem;
 	}
+
+	h1 .fa-shopping-cart {
+	  	display: inline-block;
+		background: linear-gradient(135deg,  #EB8B27 20%, #915CF5 80%); 
+		-webkit-background-clip: text;
+	    color: transparent;
+	    font-size: 1.1em;
+	    padding: 0.5rem;
+	    margin-left: 1rem;
+	}
 	 
-	#menu-button, #menu-sidebar, #menu-overlay {
+	#menu-button {
 		display: none;
 	}
+
+	header ul {
+	 	display: flex;
+	 	justify-content: space-around;
+	 	list-style: none;
+	  	margin-top: 2rem;
+	 }
 
 	#menu-content {
 	  display: flex;
