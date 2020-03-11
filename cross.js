@@ -2,27 +2,24 @@ class Produit{
 	constructor(data, target){
 		this.name = data.name.split(" ")[0];
 		this.nameLong = data.name;
-		this.price = data.price;
+		this.price = data.price/100;
 		this.description = data.description;
 		this.image = data.imageUrl;
+		this.vernis = data.varnish;
 
-		this.dark = data.varnish[0];
-		this.light = data.varnish[1];
-		this.maho = data.varnish[2];
-		/* this.vernis = data.varnish[i];
-		for (let i=0; i<vernis.length; i++) {
-		this.vernis.innerHTML = `${this.vernis}`
-		}
-		*/
-
-		window.produits[this.name] = this;
+		window.composants[this.name] = this;
 
 		this.DOM = document.createElement("figure");
 		this.DOM.id = this.name;
 		target.appendChild(this.DOM);
 		this.affichageProduit();
 	}
+
 	affichageProduit(){
+		let vernis = "";
+		for (let i=0; i<this.vernis.length; i++) {
+			vernis += `<option value="${this.vernis[i]}">${this.vernis[i]}</option>`;
+		}
 		this.DOM.innerHTML = `
 			<img src="${this.image}" alt="${this.nameLong}"/>
 			<div id="${this.name}content">
@@ -30,11 +27,8 @@ class Produit{
 				<p>${this.description}</p>
 				
 				<select id="mon_vernis">
-					<option>-- Choix du vernis --</option>
-					<option>${this.dark}</option>
-					<option>${this.light}</option>
-					<option>${this.maho}</option>
-					<!-- <option>${this.vernis}</option> -->
+					<option selected>-- Choix du vernis --</option>
+					${vernis}
 				</select>
 			</div>
 			<div id="addbtn">

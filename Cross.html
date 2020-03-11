@@ -18,8 +18,8 @@
 			return new Produit(objectsArray[0], document.getElementById("furniture"));
 		}
 
-		window.produits = {};
-
+		window.composants = {};
+		
 		var xhr = new XMLHttpRequest();
 		xhr.addEventListener('load', function(e) {
 		  var response = e.target.responseText;
@@ -29,6 +29,7 @@
 		  console.error('Request errored with status', e.target.status);
 		});
 		xhr.open('GET', 'http://localhost:3000/api/furniture/');
+		/* OU ALORS ? :  xhr.open('GET', 'http://localhost:3000/api/furniture/:id');*/
 		xhr.send();
 	</script>
 </head>

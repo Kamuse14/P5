@@ -23,13 +23,14 @@
 		var xhr = new XMLHttpRequest();
 		xhr.addEventListener('load', function(e) {
 		  var response = e.target.responseText;
-		  afficheProduit(JSON.stringify(response));
+		  affichePanier(JSON.parse(response));
 		});
 		xhr.addEventListener('error', function(e) {
 		  console.error('Request errored with status', e.target.status);
 		});
-		xhr.open('POST', 'http://localhost:3000/api/furniture/');
-		xhr.send();
+		xhr.open('POST', 'http://localhost:3000/api/furniture/order');
+		shr.setRequestHeader("Content-Type", "application/json");
+		xhr.send(JSON.stringify(jsonBody));
 	</script>
 </head>
 
@@ -90,12 +91,10 @@
 					</div>
 					<div class="form-group">
 						<label for="email">Adresse email</label>
-						<input id="email" class="form-control" type="email"  placeholder="something@email.com" required />
+						<input id="email" class="form-control" type="email"  placeholder="utilisateur@domaine.fr" required />
 					</div>
 					
-					<button class="" id="btn-envoyer" type="submit">
-						Envoyer
-					</button>
+					<button class="" id="btn-envoyer" type="submit" value="envoyer">Envoyer</button>
 				</form>		
 		</div>
 	</section>
