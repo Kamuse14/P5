@@ -44,12 +44,23 @@ li {
 /* //////////////////////////// header //////////////////////////////// */
 header {
 	display: flex;
-	justify-content: space-between;
+	justify-content: stretch;
+	align-items: center;
 	background-color: var(--bg-color);
-	top: 0;/* ne fonctionne pas*/
+	top: 0;
 	left: 0;
-	height: 4rem;
+	height: 5rem;
 	width: 100%;
+}
+#titre {
+		
+	}
+#titre {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	min-width: 250px;
+	margin-right: 1rem;
 }
 
 h1 .fa-shopping-cart {
@@ -71,12 +82,20 @@ footer {
 	width: 100%;
 	text-align: center;
  }
+#stores {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
 footer h2 {
 	font-family: "Finger Paint";
-	margin: 1rem auto 0.2rem auto;
+	font-size: 1.1em;
+	margin: 1rem auto 0 auto;
 }
 footer p {
-	margin: 0.2rem auto 1rem auto;
+	font-size: 0.9em;
+	margin: 0.2rem auto 0.5rem auto;
 }
 
 footer ul {
@@ -88,11 +107,29 @@ footer ul {
  }
 
 footer li {
+	font-size: 0.9em;
 	padding-bottom: 0.5rem;
 }
 
 /* //////////////////////////// COMPONENTS //////////////////////////// */ 
 /* //////////////////////////// menu hamburger /////////////////////////*/
+.smallburger, .bigburger {
+  position: absolute;
+  z-index: 10;
+  top: 14px;
+  left: 16px;
+}
+
+.accordion-inner {
+	background-color: var(--bg-color);
+	justify-content: left;
+	padding: 1rem;
+}
+
+.accordion-inner li {
+	padding: 1rem;
+}
+
 a {
 	text-decoration: none;
 }
@@ -102,50 +139,50 @@ nav a {
 nav a:hover {
  	color: var(--bg-orange);
  }
-#menu-content {
-	display: none;
-}
 
 /* le menu déroulant ou "accordion" */
 .accordion {
   display: flex;
-  flex-direction: column;
-  justify-content: right;
-  text-align: left;
-  margin: 1%;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
 }
-.accordion:hover .accordion-content {
-  max-height: 300px;
-}
-.accordion-content {
-	z-index: 5;
-	transition: max-height 1s;
-	background: #f3e9f1;
-	overflow: hidden;
-	max-height: 0;
-}
-.accordion-inner {
-  padding: 0 15px;
-  width: 110px;
-}
+
 .accordion-toggle {
-  transition: background 0.1s linear;
-  background: var(--bg-dark-color);
-  border-radius: 8px;
-  color: #fff;
-  display: block;
-  font-size: 30px;
-  margin: 0 0 10px;
-  padding: 10px;
-  text-align: center;
-  text-decoration: none;
+	width: 38px;
+	height: 38px;
+	transition: background 0.1s linear;
+  	background: var(--bg-dark-color);
+  	border-radius: 8px;
+ 	color: #fff;
+  	display: block;
+  	font-size: 30px;
+  	padding: 8px;
+  	text-align: center;
+  	text-decoration: none;
 }
 .accordion-toggle:hover {
   background: var(--bg-violet);
 }
 
 /* ///////////////////// fin menu hambuger //////////////////////// */
-
+/* ///////////////////////// icône panier //////////////////////////*/
+.nav-icon {
+	font-size: 1.8em;
+}
+.cart-btn {
+	position: relative;
+	cursor: pointer;
+}
+.cart-items {
+	position: absolute;
+	top: -8px;
+	right: -8px;
+	background: var(--bg-dark-color);
+	padding: 0 5px;
+	border-radius: 30%;
+	color: white;
+}
 /*  /////////////////// articles - accueil //////////////////////// */
 section h2{
 	margin-left: 2rem;
@@ -180,7 +217,7 @@ figure h3 {
 }
 
 #produits, #furniture {
-	margin-bottom: 45vh;
+	margin-bottom: 50vh;
 	text-align: center;
 }
 
@@ -219,11 +256,7 @@ select {
  /* //////////////////////////// MEDIAS //////////////////////////// */ 
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) { 
-	h1 {
-	  font-size: 1.5em;   
-	  margin-top: 0.9rem;
-	}
-
+	/* header */
 	h1 .fa-shopping-cart {
 	  	display: inline-block;
 		background: linear-gradient(135deg,  #EB8B27 20%, #915CF5 80%); 
@@ -233,34 +266,16 @@ select {
 	    padding: 0.5rem;
 	    margin-left: 1rem;
 	}
-	 
-	#menu-button {
-		display: none;
+
+	#titre {
+		min-width: 350px;
 	}
 
-	header ul {
-	 	display: flex;
-	 	justify-content: space-around;
-	 	list-style: none;
-	  	margin-top: 2rem;
-	 }
-
-	#menu-content {
-	  display: flex;
-	  justify-content: space-between;
-	  margin: auto;
-	}
-
-	#menu-content li {
-		margin-top: -0.5rem;
-		padding-right: 1.1rem;
-  		font-size: 1em;
-	}
-
+	/* section */ 
 	#produits {
 		margin-bottom: 22vh;
 	}
-
+	/* footer*/
 	footer {
 		display: flex;
  		justify-content: space-around;
@@ -278,6 +293,10 @@ select {
 	  font-size: 2.3em;   
 	  margin-top: 0.4rem;
 	}
+	#titre {
+		min-width: 600px;
+	}
+
 	figure {
 		width: 90%;
 		display: flex;

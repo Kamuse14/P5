@@ -11,15 +11,22 @@
 
 	<script src="https://kit.fontawesome.com/4f52cc11e8.js" crossorigin="anonymous"></script>
 	    
-	<script type="text/javascript" src="cross.js"></script>
+	<script type="text/javascript" src="composants.js"></script>
 	<script type="text/javascript">
 
 		function afficheProduit(objectsArray){
 			return new Produit(objectsArray[0], document.getElementById("furniture"));
 		}
 
-		window.composants = {};
-		
+		function menuDeroulant(){
+			new Burger(document.getElementById("deroulant"));
+		}
+
+		window.mvp = {
+			"burger": {},
+			"produits": {}
+		}
+
 		var xhr = new XMLHttpRequest();
 		xhr.addEventListener('load', function(e) {
 		  var response = e.target.responseText;
@@ -29,39 +36,26 @@
 		  console.error('Request errored with status', e.target.status);
 		});
 		xhr.open('GET', 'http://localhost:3000/api/furniture/');
-		/* OU ALORS ? :  xhr.open('GET', 'http://localhost:3000/api/furniture/:id');*/
 		xhr.send();
 	</script>
 </head>
 <!-- -->
-<body>
-	<header>
-		<div id="logo">
+<body onload="menuDeroulant()">
+	<header class="navbar">
+		<nav id="deroulant" class="accordion"> 
+  			
+		</nav>
+		<div id="titre">
 			<h1><i class="fas fa-shopping-cart"></i> Orifurniture</h1>
-		</div>
-		<div id="menu">
-			<div id="menu-content">
-				<nav>
-					<ul>
-						<li><a  href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
-						<li><a href="Cross.html"><i class="fas fa-store"></i> Produit<i class="fas fa-caret-down"></i> </a></li>
-						<li><a href="panier.html"><i class="fas fa-shopping-cart"></i> Panier</a></li>
-					</ul>
-				</nav>
-			</div>
-
-			<div class="accordion"> 
-  				<button id="menu-button" class="accordion-toggle"><i class="fas fa-bars"></i></button>
-		  		<nav class="accordion-content">
-				    <ul class="accordion-inner"> 
-				      	<li><a  href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
-						<li><a href="Cross.html"><i class="fas fa-store"></i> Produit <i class="fas fa-caret-down"></i></a></li>
-						<li><a href="panier.html"><i class="fas fa-shopping-cart"></i> Panier</a></li>
-				    </ul>
-				</nav>
+			
+			<div class="cart-btn">
+				<span class="nav-icon">
+					<i class="fas fa-cart-plus"></i>
+				</span>
+				<div class="cart-items">0</div>
 			</div>
 		</div>
-		
+				
 	</header>
 
 	<section id="index">
