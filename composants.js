@@ -44,6 +44,7 @@ class ListeProduits{
 		this.nameLong = data.name; //nom en entier
 		this.price = data.price/100; //en centimes d'euros
 		this.image = data.imageUrl;
+		this.id = data._id;
 		window.mvp.produits[this.name] = this;
 
 		this.DOM = document.createElement("div");
@@ -53,7 +54,7 @@ class ListeProduits{
 	
 	affichageAccueil(){ //contenu inséré
 		this.DOM.innerHTML = `
-			<a href="${this.name}.html">
+			<a href="produit.html?id=${this.id}">
 				<figure id="${this.name}" class="meuble">
 					<img src="${this.image}" alt="${this.nameLong}"/>
 					<figcaption>${this.nameLong}</figcaption>			
@@ -85,6 +86,7 @@ class Produit{
 		this.affichageProduit();
 	}
 
+
 	affichageProduit(){
 		let vernis = "";
 		for (let i=0; i<this.vernis.length; i++) {
@@ -114,9 +116,13 @@ class Produit{
 /*class Panier {
 	constructor(){
 		this.content = [];
+		this.total += this.price;
 		window.mvp.panier = this;
 		this.DOM = document.createElement("table");
 		this.DOM.id = "tableau";
+		document.getElementById("addbutton").addEventListener('click', event => {
+			
+		})
 		target.appendChild(this.DOM);
 		this.affichagePanier();
 	}
@@ -127,16 +133,24 @@ class Produit{
 
 	affichagePanier(){
 		this.DOM.innerHTML = `
-			<tr>
-				<th>Produit</th>
-				<th>Nom du produit</th>
-				<th>Prix unitaire</th>
-			</tr>
-			<tr>
-				<th><img src="${this.image}" alt="${this.nameLong}"/></th>
-				<th>${this.nameLong}</th>
-				<th>${this.price}€</th>
-			</tr>
+			<thead>
+				<tr>
+					<th>Produit</th>
+					<th>Nom du produit</th>
+					<th>Prix unitaire</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><img src="${this.image}" alt="${this.nameLong}"/></td>
+					<td>${this.nameLong}</td>
+					<td>${this.price}€</td>
+				</tr>
+				<tr>
+					<td colspan="2"> Total :</td>
+					<td>${this.total}€</td>
+				</tr>
+			</tbody>
 		`;
 	}
 }*/

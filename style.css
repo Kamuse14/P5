@@ -239,7 +239,15 @@ select {
 #addbtn h3 {
 	font-size: 2em;
 }
-
+/*  /////////////////// page - panier //////////////////////// */
+table {
+	margin: 1rem auto;
+	font-size: 0.8em;
+	border-collapse: collapse;
+}
+td, th {
+	border: 1px solid grey;
+}
 /*  /////////////////////// les boutons ////////////////////////////// */
 
 #addbutton, #btn-envoyer {

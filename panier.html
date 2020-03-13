@@ -26,8 +26,7 @@
 
 		window.mvp = {
 			"burger": {},
-			"produits": {},
-			"panier" : {}
+			"produits": {}
 		}
 
 		var xhr = new XMLHttpRequest();
@@ -63,17 +62,24 @@
 
 	<section id="contenu">
 		<table>
-			<tr>
-				<th>Produit</th>
-				<th>Nom du produit</th>
-				<th>Prix unitaire</th>
-			</tr>
-			<tr>
-				<th><img src="${this.image}" alt="${this.nameLong}"/></th>
-				<th>${this.nameLong}</th>
-				<th>${this.price}€</th>
-			</tr>
-
+			<thead>
+				<tr>
+					<th>Produit</th>
+					<th>Nom du produit</th>
+					<th>Prix unitaire</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><img src="${this.image}" alt="${this.nameLong}"/></td>
+					<td>${this.nameLong}</td>
+					<td>${this.price}€</td>
+				</tr>
+				<tr id="total">
+					<td colspan="2"> Total :</td>
+					<td>${this.total}€</td>
+				</tr>
+			</tbody>	
 		</table>		
 	</section>
 

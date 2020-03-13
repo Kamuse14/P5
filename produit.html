@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>Orinoco - La Coffe Table</title>
+	<title>Orinoco - La Cross Table</title>
 	<meta name="description" content="Vous trouverez ici le mobilier de vos rêves..."/>
 
 	<link aria-label="puce Orinoco" rel="shortcut icon" type="image/png" href="images/logo.png">
@@ -15,7 +15,7 @@
 	<script type="text/javascript">
 
 		function afficheProduit(objectsArray){
-			return new Produit(objectsArray[1], document.getElementById("contenu"));
+			return new Produit(objectsArray, document.getElementById("contenu"));
 		}
 
 		function menuDeroulant(){
@@ -26,7 +26,8 @@
 			"burger": {},
 			"produits": {}
 		}
-
+		let id = location.search.substring(4); 
+		console.log(id);
 		var xhr = new XMLHttpRequest();
 		xhr.addEventListener('load', function(e) {
 		  var response = e.target.responseText;
@@ -35,7 +36,7 @@
 		xhr.addEventListener('error', function(e) {
 		  console.error('Request errored with status', e.target.status);
 		});
-		xhr.open('GET', 'http://localhost:3000/api/furniture/');
+		xhr.open('GET', 'http://localhost:3000/api/furniture/'+id);
 		xhr.send();
 	</script>
 </head>
