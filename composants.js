@@ -29,8 +29,7 @@ class Burger{
     this.dom.innerHTML = `
       <div id="menu-button" class="accordion-toggle"><i class="fas fa-bars"></i></div>
       	<ul class="accordion-inner"> 
-			<li><a  href="index.html"><i class="fas fa-home"></i> Accueil <i class="fas fa-caret-down"></i></a></li>
-			<li><a href="cross.html"><i class="fas fa-store"></i> Produits</a></li>
+			<li><a  href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
 			<li><a href="panier.html"><i class="fas fa-shopping-cart"></i> Panier</a></li>
 		</ul>
 `;
@@ -42,7 +41,7 @@ class Burger{
 class ListeProduits{
 	constructor(data, target){
 		this.name = data.name.split(" ")[0]; //nom sans espace (qui peut nous gêner)
-		this.nameLong = data.name;
+		this.nameLong = data.name; //nom en entier
 		this.price = data.price/100; //en centimes d'euros
 		this.image = data.imageUrl;
 		window.mvp.produits[this.name] = this;
@@ -52,7 +51,7 @@ class ListeProduits{
 		this.affichageAccueil();
 	}
 	
-	affichageAccueil(){
+	affichageAccueil(){ //contenu inséré
 		this.DOM.innerHTML = `
 			<a href="${this.name}.html">
 				<figure id="${this.name}" class="meuble">
@@ -116,9 +115,28 @@ class Produit{
 	constructor(){
 		this.content = [];
 		window.mvp.panier = this;
+		this.DOM = document.createElement("table");
+		this.DOM.id = "tableau";
+		target.appendChild(this.DOM);
+		this.affichagePanier();
 	}
 
 	ajoute(data){
 			
+	}
+
+	affichagePanier(){
+		this.DOM.innerHTML = `
+			<tr>
+				<th>Produit</th>
+				<th>Nom du produit</th>
+				<th>Prix unitaire</th>
+			</tr>
+			<tr>
+				<th><img src="${this.image}" alt="${this.nameLong}"/></th>
+				<th>${this.nameLong}</th>
+				<th>${this.price}€</th>
+			</tr>
+		`;
 	}
 }*/

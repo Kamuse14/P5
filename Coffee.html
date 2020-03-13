@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>Orinoco - Panier</title>
+	<title>Orinoco - La Coffe Table</title>
 	<meta name="description" content="Vous trouverez ici le mobilier de vos rêves..."/>
 
 	<link aria-label="puce Orinoco" rel="shortcut icon" type="image/png" href="images/logo.png">
@@ -14,11 +14,9 @@
 	<script type="text/javascript" src="composants.js"></script>
 	<script type="text/javascript">
 
-		/*function afficheProduit(objectsArray){
-			for(let i=0; i<objectsArray.length; i++){
-				new ListeProduits(objectsArray[i], document.getElementById("contenu"));
-			}
-		}*/
+		function afficheProduit(objectsArray){
+			return new Produit(objectsArray[1], document.getElementById("contenu"));
+		}
 
 		function menuDeroulant(){
 			new Burger(document.getElementById("deroulant"));
@@ -26,8 +24,7 @@
 
 		window.mvp = {
 			"burger": {},
-			"produits": {},
-			"panier" : {}
+			"produits": {}
 		}
 
 		var xhr = new XMLHttpRequest();
@@ -42,7 +39,7 @@
 		xhr.send();
 	</script>
 </head>
-
+<!-- -->
 <body onload="menuDeroulant()">
 	<header class="navbar">
 		<nav id="deroulant" class="accordion"> 
@@ -62,19 +59,7 @@
 	</header>
 
 	<section id="contenu">
-		<table>
-			<tr>
-				<th>Produit</th>
-				<th>Nom du produit</th>
-				<th>Prix unitaire</th>
-			</tr>
-			<tr>
-				<th><img src="${this.image}" alt="${this.nameLong}"/></th>
-				<th>${this.nameLong}</th>
-				<th>${this.price}€</th>
-			</tr>
-
-		</table>		
+				
 	</section>
 
 	<footer>

@@ -15,8 +15,11 @@
 	<script type="text/javascript">
 
 		function afficheProduit(objectsArray){
+			let titre = document.createElement("h2");
+			titre.textContent = "Nos produits";
+			document.getElementById("contenu").appendChild(titre);
 			for(let i=0; i<objectsArray.length; i++){
-				new ListeProduits(objectsArray[i], document.getElementById("produits"));
+				new ListeProduits(objectsArray[i], document.getElementById("contenu"));
 			}
 		}
 
@@ -50,21 +53,18 @@
 		<div id="titre">
 			<h1><i class="fas fa-shopping-cart"></i> Orifurniture</h1>
 			
-			<div class="cart-btn">
+			<a href="panier.html"><div class="cart-btn">
 				<span class="nav-icon">
 					<i class="fas fa-cart-plus"></i>
 				</span>
 				<div class="cart-items">0</div>
-			</div>
+			</div></a>
 		</div>
 				
 	</header>
 
-	<section id="index">
-		<h2>Nos produits</h2>
-		<div id="produits">
-						
-		</div>
+	<section id="contenu">
+				
 	</section>
 
 	<footer>

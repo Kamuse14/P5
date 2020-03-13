@@ -184,7 +184,8 @@ nav a:hover {
 	color: white;
 }
 /*  /////////////////// articles - accueil //////////////////////// */
-section h2{
+section h2 {
+	text-align: left;
 	margin-left: 2rem;
 }
 
@@ -193,7 +194,7 @@ figure {
 	box-shadow: 2px 2px 10px #F3E9F1;
 	width: 80%;
 	height: auto;
-	margin-bottom: 2rem;
+	margin: 2rem auto;
 	padding-bottom: 1rem;
 }
 
@@ -210,13 +211,15 @@ figure img {
 
 figcaption {
 	color: var(--bg-orange);
+	font-size: 1.8em;
+
 }
 
 figure h3 {
 	color: var(--txt-color);
 }
 
-#produits, #furniture {
+#contenu, #furniture {
 	margin-bottom: 50vh;
 	text-align: center;
 }
@@ -272,7 +275,7 @@ select {
 	}
 
 	/* section */ 
-	#produits {
+	#contenu {
 		margin-bottom: 22vh;
 	}
 	/* footer*/
@@ -301,8 +304,6 @@ select {
 		width: 90%;
 		display: flex;
 		align-items: center;
-		margin: auto;
-		margin-bottom: 3rem;
 		padding: 0.7rem;
 	}
 	figure img {
