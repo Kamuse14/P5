@@ -155,59 +155,41 @@ class Panier {
 		this.description = data.description;
 		this.image = data.imageUrl;
 		this.content = [];
-		this.total += data.price;
+		this.total = this.price++;
 
 		window.mvp.panier = this;
-		this.DOM = document.createElement("commande");
+		this.DOM = document.createElement("tbody");
 		target.appendChild(this.DOM);
 
-		this.tbody = document.createElement("tbody");
-		this.DOM.appendChild(this.tbody);
-		
-		this.affichageEntetePanier();
-		
-		//this.affichagePanier() = affichageEntetePanier() + affichageLignePanier() + affichageTotalPanier();
+		//this.affichageLignePanier();
+		this.affichageTotalPanier();
+		//this.affichagePanier()
 	}
 		
-	//affichage du tableau de produits sélectionnés
-	affichageEntetePanier(){
+	//affichage du tableau de produits sélectionnés (pour le moment un par un : pas de liste)
+	/*async function*/ affichageLignePanier(){ 
 		this.DOM.innerHTML = `
-			<h2>Votre commande</h2>
-			<table>	
-				<thead>
-					<tr>
-						<th>Produit</th>
-						<th>Nom du produit</th>
-						<th>Prix</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td><img src="${this.image}" alt="${this.nameLong}"/></td>
-						<td>${this.nameLong}</td>
-						<td>${this.price}€</td>
-					</tr>
-				</tbody>
-			</table>
-		`;
-		this.affichageLignePanier();//marche pas
-	}
-	affichageLignePanier(){ //fonctionne si on "désactive" affichageEntetePanier()
-		this.tbody.innerHTML = `
 			<tr>
 				<td><img src="${this.image}" alt="${this.nameLong}"/></td>
 				<td>${this.nameLong}</td>
 				<td>${this.price}€</td>
 			</tr>
 		`;
+		//this.affichageLignePanier()
 	}
-	/*affichageTotalPanier(){
-		this.tbody.innerHTML = `
-			<tr>
+	/*async function*/ affichageTotalPanier(){
+		this.DOM.innerHTML = `
+			<tr id="total">
 				<td colspan="2"> Total :</td>
 				<td>${this.total}€</td>
 			</tr>
 		`;
+	}
+
+	/*async function affichagePanier(){
+		const ligneCommande = await affichageLignePanier();
+		const totalCommande = await affichageTotalPanier();
+		return ligneCommande + totalCommande;
 	}*/
 
 }

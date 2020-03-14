@@ -15,7 +15,7 @@
 	<script type="text/javascript">
 
 		function affichePanier(objectsArray){
-			return new Panier(objectsArray, document.getElementById("contenu"));
+			return new Panier(objectsArray, document.getElementById("tableau"));
 		}
 
 		function menuDeroulant(){
@@ -61,6 +61,17 @@
 	</header>
 
 	<section id="contenu">
+		<h2>Votre commande</h2>
+			<table id="tableau">	
+				<thead>
+					<tr>
+						<th>Produit</th>
+						<th>Nom du produit</th>
+						<th>Prix</th>
+					</tr>
+				</thead>
+				
+			</table>
 		
 	</section>
 
