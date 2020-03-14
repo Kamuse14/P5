@@ -27,7 +27,8 @@ class Burger{
 
   renderUnMinified(){
     this.dom.innerHTML = `
-      <div id="menu-button" class="accordion-toggle"><i class="fas fa-bars"></i></div>
+      	<div id="menu-button" class="accordion-toggle"><i class="fas fa-bars"></i></div>
+
       	<ul class="accordion-inner"> 
 			<li><a  href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
 			<li><a href="panier.html"><i class="fas fa-shopping-cart"></i> Panier</a></li>
@@ -37,13 +38,43 @@ class Burger{
   }
 }
 
+/*
+class Burger{
+  constructor(target){
+    this.dom = document.createElement("burger");
+    this.dom.id = "burger";
+    target.appendChild(this.dom);
+    this.content=[];
+    window.mvp.burger = this;
+    this.dom.onclick = this.changeAffichage.bind(this);
+    this.smallBurger();
+  }
+ smallBurger(){
+   this.dom.innerHTML = `<div id="menu-button" class="accordion-toggle"><i class="fas fa-bars"></i></div>`;
+    this.dom.className = "smallburger";
+ }
+  changeAffichage(){
+    this.dom.innerHTML = `
+      <div id="menu-button" class="accordion-toggle"><i class="fas fa-bars"></i></div>
+      <ul class="accordion-inner"> 
+         <li><a  href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+         <li><a href="panier.html"><i class="fas fa-shopping-cart"></i> Panier</a></li>
+      </ul>
+`;
+    this.dom.className = "bigburger";
+    
+  }
+}
+*/
+
+
 // LISTE DES PRODUITS page accueil
 class ListeProduits{
 	constructor(data, target){
 		this.name = data.name.split(" ")[0]; //nom sans espace (qui peut nous gêner)
 		this.nameLong = data.name; //nom en entier
 		this.price = data.price/100; //en centimes d'euros
-		this.image = data.imageUrl;
+		this.image = data.imageUrl;	//adresse images dans l'API
 		this.id = data._id;
 		window.mvp.produits[this.name] = this;
 
@@ -73,9 +104,11 @@ class Produit{
 		this.description = data.description;
 		this.image = data.imageUrl;
 		this.vernis = data.varnish;
+		this.id = data._id;
 		window.mvp.produits[this.name] = this;
 
 		/*window.mvp.panier.ajoute({
+			"imageUrl" : this.image,
 			"name" : this.name,
 			"price" : this.price
 		})*/
@@ -86,9 +119,8 @@ class Produit{
 		this.affichageProduit();
 	}
 
-
 	affichageProduit(){
-		let vernis = "";
+		let vernis = ""; //choix des vernis
 		for (let i=0; i<this.vernis.length; i++) {
 			vernis += `<option value="${this.vernis[i]}">${this.vernis[i]}</option>`;
 		}
@@ -105,7 +137,9 @@ class Produit{
 			</div>
 			<div id="addbtn">
 				<h3>${this.price}€</h3>	
-				<button id="addbutton" type="submit"><i class="fas fa-cart-plus"></i> Ajouter au panier</button>
+				<a href="panier.html?id=${this.id}">
+					<button id="addbutton" type="submit"><i class="fas fa-cart-plus"></i> Ajouter au panier</button>
+				</a>
 			</div>		
 		`;
 		this.DOM.className = "meuble";
@@ -113,44 +147,80 @@ class Produit{
 }
 
 //page PANIER
-/*class Panier {
-	constructor(){
+class Panier {
+	constructor(data, target){
+		//this.name = data.name.split(" ")[0];
+		this.nameLong = data.name;
+		this.price = data.price/100;
+		this.description = data.description;
+		this.image = data.imageUrl;
 		this.content = [];
-		this.total += this.price;
+		this.total += data.price;
+
 		window.mvp.panier = this;
-		this.DOM = document.createElement("table");
-		this.DOM.id = "tableau";
-		document.getElementById("addbutton").addEventListener('click', event => {
-			
-		})
+		this.DOM = document.createElement("commande");
 		target.appendChild(this.DOM);
-		this.affichagePanier();
-	}
 
-	ajoute(data){
-			
+		this.tbody = document.createElement("tbody");
+		this.DOM.appendChild(this.tbody);
+		
+		this.affichageEntetePanier();
+		
+		//this.affichagePanier() = affichageEntetePanier() + affichageLignePanier() + affichageTotalPanier();
 	}
-
-	affichagePanier(){
+		
+	//affichage du tableau de produits sélectionnés
+	affichageEntetePanier(){
 		this.DOM.innerHTML = `
-			<thead>
-				<tr>
-					<th>Produit</th>
-					<th>Nom du produit</th>
-					<th>Prix unitaire</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td><img src="${this.image}" alt="${this.nameLong}"/></td>
-					<td>${this.nameLong}</td>
-					<td>${this.price}€</td>
-				</tr>
-				<tr>
-					<td colspan="2"> Total :</td>
-					<td>${this.total}€</td>
-				</tr>
-			</tbody>
+			<h2>Votre commande</h2>
+			<table>	
+				<thead>
+					<tr>
+						<th>Produit</th>
+						<th>Nom du produit</th>
+						<th>Prix</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><img src="${this.image}" alt="${this.nameLong}"/></td>
+						<td>${this.nameLong}</td>
+						<td>${this.price}€</td>
+					</tr>
+				</tbody>
+			</table>
+		`;
+		this.affichageLignePanier();//marche pas
+	}
+	affichageLignePanier(){ //fonctionne si on "désactive" affichageEntetePanier()
+		this.tbody.innerHTML = `
+			<tr>
+				<td><img src="${this.image}" alt="${this.nameLong}"/></td>
+				<td>${this.nameLong}</td>
+				<td>${this.price}€</td>
+			</tr>
 		`;
 	}
-}*/
+	/*affichageTotalPanier(){
+		this.tbody.innerHTML = `
+			<tr>
+				<td colspan="2"> Total :</td>
+				<td>${this.total}€</td>
+			</tr>
+		`;
+	}*/
+
+}
+class Contact {
+	constructor(){
+		this.firstName = data.firstName;
+		this.lastName = data.lastName;
+		this.address = data.address;
+		this.city = data.city;
+		this.email = data.email;
+
+		 window.mvp.contact = this;
+	}
+
+
+}

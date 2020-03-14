@@ -14,11 +14,9 @@
 	<script type="text/javascript" src="composants.js"></script>
 	<script type="text/javascript">
 
-		/*function afficheProduit(objectsArray){
-			for(let i=0; i<objectsArray.length; i++){
-				new ListeProduits(objectsArray[i], document.getElementById("contenu"));
-			}
-		}*/
+		function affichePanier(objectsArray){
+			return new Panier(objectsArray, document.getElementById("contenu"));
+		}
 
 		function menuDeroulant(){
 			new Burger(document.getElementById("deroulant"));
@@ -26,18 +24,20 @@
 
 		window.mvp = {
 			"burger": {},
-			"produits": {}
+			"produits": {},
+			"panier" : {}
 		}
-
+		let id = location.search.substring(4); 
+		console.log(id);
 		var xhr = new XMLHttpRequest();
 		xhr.addEventListener('load', function(e) {
 		  var response = e.target.responseText;
-		  afficheProduit(JSON.parse(response));
+		  affichePanier(JSON.parse(response));
 		});
 		xhr.addEventListener('error', function(e) {
 		  console.error('Request errored with status', e.target.status);
 		});
-		xhr.open('GET', 'http://localhost:3000/api/furniture/');
+		xhr.open('GET', 'http://localhost:3000/api/furniture/'+id);
 		xhr.send();
 	</script>
 </head>
@@ -61,26 +61,7 @@
 	</header>
 
 	<section id="contenu">
-		<table>
-			<thead>
-				<tr>
-					<th>Produit</th>
-					<th>Nom du produit</th>
-					<th>Prix unitaire</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td><img src="${this.image}" alt="${this.nameLong}"/></td>
-					<td>${this.nameLong}</td>
-					<td>${this.price}€</td>
-				</tr>
-				<tr id="total">
-					<td colspan="2"> Total :</td>
-					<td>${this.total}€</td>
-				</tr>
-			</tbody>	
-		</table>		
+		
 	</section>
 
 	<footer>

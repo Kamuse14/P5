@@ -1,8 +1,7 @@
 {
-  "id":" ",
-  "name":"",
-  "username":"",
+  "firstName":"",
+  "lastName":"",
   "address":"",
-  "town":"",
+  "city":"",
   "email":""  
 }
