@@ -148,45 +148,7 @@ class Meuble{
 	}
 }
 
-class Panier {
-	constructor(target){
-		this.commande = [];
-		window.mvp.panier = this;
-		this.DOM = document.createElement("tbody");
-		target.appendChild(this.DOM);
-	}
 
-	ajouteProduit(produit){
-		this.commande.push(produit);
-	}
-
-	affichagePanier() {
-		console.log(this.commande);
-		for (let produit of this.commande) {
-			this.DOM.innerHTML += `
-			<tr>
-				<td><img src="${produit.image}" alt="${produit.nameLong}"/></td>
-				<td>${produit.nameLong}</td>
-				<td>${produit.price}€</td>
-			</tr>
-		`;	
-		}
-		this.DOM.innerHTML += `
-			<tr id="total">
-				<td colspan="2"> Total :</td>
-				<td>${this.totalPanier()}€</td>
-			</tr>
-		`;
-	}
-
-	totalPanier() {
-		let total = 0;
-		for(let produit of this.commande) {
-			total += produit.price;
-		}
-		return total;
-	}
-}
 
 //page PANIER
 /*class Panier {
