@@ -155,14 +155,15 @@ class Panier {
 		this.description = data.description;
 		this.image = data.imageUrl;
 		this.content = [];
-		this.total = this.price++;
+		this.contenuPanier = [];
+		//this.total = this.price++;
 
 		window.mvp.panier = this;
 		this.DOM = document.createElement("tbody");
 		target.appendChild(this.DOM);
 
-		//this.affichageLignePanier();
-		this.affichageTotalPanier();
+		this.affichageLignePanier();
+		//this.affichageTotalPanier();
 		//this.affichagePanier()
 	}
 		
@@ -174,10 +175,9 @@ class Panier {
 				<td>${this.nameLong}</td>
 				<td>${this.price}€</td>
 			</tr>
-		`;
-		//this.affichageLignePanier()
+		`;		
 	}
-	/*async function*/ affichageTotalPanier(){
+	/*async function affichageTotalPanier(){
 		this.DOM.innerHTML = `
 			<tr id="total">
 				<td colspan="2"> Total :</td>
@@ -186,14 +186,14 @@ class Panier {
 		`;
 	}
 
-	/*async function affichagePanier(){
+	affichagePanier(){
 		const ligneCommande = await affichageLignePanier();
 		const totalCommande = await affichageTotalPanier();
 		return ligneCommande + totalCommande;
 	}*/
 
 }
-class Contact {
+/*class Contact {
 	constructor(){
 		this.firstName = data.firstName;
 		this.lastName = data.lastName;
@@ -205,4 +205,4 @@ class Contact {
 	}
 
 
-}
+}*/
