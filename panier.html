@@ -20,6 +20,8 @@
 			panier.affichagePanier();
 		}
 
+		//function saveFormulaire
+
 		function menuDeroulant(){
 			new Burger(document.getElementById("deroulant"));
 		}
@@ -27,7 +29,8 @@
 		window.mvp = {
 			"burger": {},
 			"produits": {},
-			"panier" : {}
+			"panier" : {},
+			"contact" : {}
 		}
 		let id = location.search.substring(4); 
 		console.log(id);
@@ -48,10 +51,10 @@
 <body onload="menuDeroulant()">
 	<header class="navbar">
 		<nav id="deroulant" class="accordion"> 
-  			
+  			<div id="menu-button" class="accordion-toggle"><i class="fas fa-bars"></i></div>
 		</nav>
 		<div id="title">
-			<h1><i class="fas fa-shopping-cart"></i> Orifurniture</h1>
+			<h1><i class="fas fa-chair"></i> Orifurniture</h1>
 			
 			<div class="cart-btn">
 				<span class="nav-icon">
@@ -64,27 +67,31 @@
 	</header>
 
 	<section id="contenu">
-		<div id="order"></div>
-			<h2>Votre commande</h2>
-			<table id="tableau">	
-				<thead>
-					<tr>
-						<th>Produit</th>
-						<th>Nom du produit</th>
-						<th>Prix</th>
-					</tr>
-				</thead>
-
-			</table>
-		</div>
-		<div id="formulaire">
+		<div id="cart-page">
+			<div id="order">
+				<h2>Votre commande</h2>
+				<table id="tableau">	
+					<thead>
+						<tr>
+							<th>Produit</th>
+							<th>Nom du produit</th>
+							<th>Prix</th>
+							<th><i class="far fa-trash-alt"></th>
+						</tr>
+					</thead>
+					<!-- JS lignes produits commandés -->
+					<!-- JS total -->
+				</table>
+				<button id="delete" type="submit"><i class="far fa-trash-alt"></i> Vider le panier</button>
+			</div>
+			<div id="formulaire">
 				<h2>Vos coordonnées</h2>
-				<form id="form" method="post" action="">
+				<form method="post" action="form.json">
 					<div class="form-group">
 						<label for="firstName">
 							Prénom : 
 						</label>
-						<input id="firstname" class="form-control" type="text" pattern="[A-Z][a-z]{1,}" placeholder="Prénom" required />
+						<input id="firstname" class="form-control" type="text" pattern="[A-Z][a-z]{1,}" placeholder="Prénom" name="prenom" onchange="sessionStorage.setItem(prenom,this.value)" required />
 					</div>
 					<div class="form-group">
 						<label for="lastName">
@@ -110,13 +117,12 @@
 						</label>
 						<input id="email" class="form-control" type="email" placeholder="utilisateur@domaine.fr" required />
 					</div>
-					</div> 
 					<a href="validation.html">
 						<button id="addbutton" type="submit"><i class="far fa-paper-plane"></i> Envoyer</button>
 					</a>
 				</form>
+			</div>
 		</div>
-		
 	</section>
 
 	<footer>
