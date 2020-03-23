@@ -132,7 +132,10 @@ footer li {
   	background: var(--bg-dark-color);
   	border-radius: 8px;
  	color: #fff;
-  	display: block;
+  	position: absolute;
+  z-index: 10;
+  top: 12px;
+  left: 16px;
   	font-size: 30px;
   	padding: 8px;
   	text-align: center;
@@ -272,10 +275,17 @@ thead tr th:first-child {
 	width: 100px;
 }
 
+td .fa-trash-alt {
+	cursor: pointer;
+}
+
 #total td:first-child {
 	text-transform: uppercase;
 	text-align: right;
 }
+
+
+
 /*  /////////////////// formulaire //////////////////////// */
 #formulaire {
 	margin: 3rem auto;
@@ -308,7 +318,7 @@ input {
 
 /*  /////////////////////// les boutons ////////////////////////////// */
 
-#addbutton, #btn-envoyer {
+button {
 	cursor: pointer;
 	background-color: var(--bg-dark-color);
 	box-shadow: 1px 1px 4px #975389;
@@ -318,6 +328,7 @@ input {
 	font-size: 1.1em;
 	color: white;
 	padding: 0.6rem;
+	margin-top: 1rem;
 	margin-bottom: 1,5rem;
 }
 

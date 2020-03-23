@@ -11,7 +11,13 @@
 
 	<script src="https://kit.fontawesome.com/4f52cc11e8.js" crossorigin="anonymous"></script>
 	    
-	<script type="text/javascript" src="composants.js"></script>
+	<script type="text/javascript" src="js/burger.js"></script> 
+	<script type="text/javascript" src="js/contact.js"></script> 
+	<script type="text/javascript" src="js/panier.js"></script> 
+	<script type="text/javascript" src="js/meuble.js"></script>
+	<script type="text/javascript" src="js/liste.js"></script>
+	<script type="text/javascript" src="js/produit.js"></script>  
+	<script type="text/javascript" src="js/main.js"></script>
 	<script type="text/javascript">
 
 		function afficheProduit(object){
@@ -29,8 +35,9 @@
 			"burger": {},
 			"produits": {}
 		}
+		
 		let id = location.search.substring(4); 
-		console.log(id);
+		console.log('test' +id);
 		var xhr = new XMLHttpRequest();
 		xhr.addEventListener('load', function(e) {
 		  var response = e.target.responseText;

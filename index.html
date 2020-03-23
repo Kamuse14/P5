@@ -10,9 +10,18 @@
 	<link rel="stylesheet" type="text/css" href="style.css"/>
 
 	<script src="https://kit.fontawesome.com/4f52cc11e8.js" crossorigin="anonymous"></script>
-	    
-	<script type="text/javascript" src="composants.js"></script>
+	<script type="text/javascript" src="js/burger.js"></script> 
+	<script type="text/javascript" src="js/contact.js"></script> 
+	<script type="text/javascript" src="js/panier.js"></script> 
+	<script type="text/javascript" src="js/meuble.js"></script>
+	<script type="text/javascript" src="js/liste.js"></script>
+	<script type="text/javascript" src="js/produit.js"></script>  
+	<script type="text/javascript" src="js/main.js"></script>
 	<script type="text/javascript">
+
+		function menuDeroulant(){
+			new Burger(document.getElementById("deroulant"));
+		}
 
 		function afficheProduit(objectsArray){
 			let liste = new ListeProduits(document.getElementById("contenu"));
@@ -23,16 +32,13 @@
 			liste.affichageAccueil();
 		}
 
-		function menuDeroulant(){
-			new Burger(document.getElementById("deroulant"));
-		}
-
 		window.mvp = {
 			"burger": {},
 			"produits": {},
 			// "panier": {},
 			// "contact": {}
 		}
+
 		// Méthode fetch
 		fetch('http://localhost:3000/api/furniture')
 			.then((response) => {
