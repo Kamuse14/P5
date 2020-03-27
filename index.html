@@ -1,101 +1,79 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>Orinoco - Mobilier en chêne</title>
-	<meta name="description" content="Vous trouverez ici le mobilier de vos rêves..."/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Orinoco - Mobilier en chêne</title>
+  <meta name="description" content="Vous trouverez ici le mobilier de vos rêves..."/>
 
-	<link aria-label="puce Orinoco" rel="shortcut icon" type="image/png" href="images/logo.png">
-	<link rel="stylesheet" type="text/css" href="style.css"/>
+  <link aria-label="puce Orinoco" rel="shortcut icon" type="image/png" href="images/logo.png">
+  <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'>
+  <link rel="stylesheet" type="text/css" href="style.css"/>
 
-	<script src="https://kit.fontawesome.com/4f52cc11e8.js" crossorigin="anonymous"></script>
-	<script type="text/javascript" src="js/burger.js"></script> 
-	<script type="text/javascript" src="js/contact.js"></script> 
-	<script type="text/javascript" src="js/panier.js"></script> 
-	<script type="text/javascript" src="js/meuble.js"></script>
-	<script type="text/javascript" src="js/liste.js"></script>
-	<script type="text/javascript" src="js/produit.js"></script>  
-	<script type="text/javascript" src="js/main.js"></script>
-	<script type="text/javascript">
+  <script src="https://kit.fontawesome.com/4f52cc11e8.js" crossorigin="anonymous"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script> -->
+   <!--  <script type="text/javascript" src="js/contact.js"></script> 
+  <script type="text/javascript" src="js/panier.js"></script> -->
+  <script type="text/javascript" src="js/produit.js"></script> 
+  <script type="text/javascript" src="js/connector.js"></script> 
+  <script type="text/javascript" src="js/page.js"></script>  
+  <!-- <script type="text/javascript" src="js/main.js"></script> -->
+  <script type="text/javascript">
 
-		function menuDeroulant(){
-			new Burger(document.getElementById("deroulant"));
-		}
+    window.mvp = {
+      // "burger": {},
+      "produits": {},
+      // "panier": {},
+      // "contact": {}
+    }
 
-		function afficheProduit(objectsArray){
-			let liste = new ListeProduits(document.getElementById("contenu"));
-			for(let i=0; i<objectsArray.length; i++){
-				//console.log(objectsArray[i]);
-				liste.ajouteProduit(new Produit(objectsArray[i]));
-			}
-			liste.affichageAccueil();
-		}
-
-		window.mvp = {
-			"burger": {},
-			"produits": {},
-			// "panier": {},
-			// "contact": {}
-		}
-
-		// Méthode fetch
-		fetch('http://localhost:3000/api/furniture')
-			.then((response) => {
-			  return response.json(); 
-			})
-			.then((text) => {
-			  afficheProduit(text);
-			})
-			.catch((e) => {
-			  console.log("error");
-			});
-		
-	</script>
+    function initPage(contexte){
+      new Connector("http://localhost:3000/api/");
+      //new Burger(document.getElementById("deroulant"), contexte);
+      new Page(document.getElementsByTagName("section")[0], contexte);
+    }
+  </script>
 </head>
 
-<body onload="menuDeroulant()" >
-	<header class="navbar">
-		<nav id="deroulant" class="accordion"> 
-  			<div id="menu-button" class="accordion-toggle"><i class="fas fa-bars"></i></div>
-		</nav>
-		<div id="title">
-			<h1><i class="fas fa-chair"></i></i> Orifurniture</h1>
-			
-			<a href="panier.html"><div class="cart-btn">
-				<span class="nav-icon">
-					<i class="fas fa-cart-plus"></i>
-				</span>
-				<div class="cart-items">0</div>
-			</div></a>
-		</div>
-				
-	</header>
+<body onload="initPage('liste')" >
+  <header class="navbar">
+    <div id="home" onclick="initPage('liste')"><i class="fas fa-home"></i></div>
+    <div id="title">
+      <h1><i class="fas fa-chair"></i></i> Orifurniture</h1>
+    </div>  
+    <div id="cart" class="cart-btn">
+      <!-- ici le logo panier avec son lien vers renderPanier + éventuellement son compteur -->
+      <span class="nav-icon" onclick="new Page('panier')">
+        <i class="fas fa-cart-plus"></i>
+      </span>
+      <div class="cart-items">0</div>
+    </div>
+  </header>
 
-	<section id="contenu">
-			<!-- contenu généré en JS -->	
-	</section>
+  <section id="contenu">
+      <!-- contenu généré en JS --> 
+  </section>
 
-	<footer>
-		<div id="stores">
-			<div class="boutique">
-				<h2>Orinoco</h2>
-				<p>vente en ligne</p>
-			</div>
-			<div class="boutique">
-				<h2>Orifurniture</h2>
-				<p>vente de mobilier en chêne</p>
-			</div>
-		</div>
+  <footer>
+    <div id="stores">
+      <div class="boutique">
+        <h2>Orinoco</h2>
+        <p>vente en ligne</p>
+      </div>
+      <div class="boutique">
+        <h2>Orifurniture</h2>
+        <p>vente de mobilier en chêne</p>
+      </div>
+    </div>
 
-		<ul>
-			<li><a href=""> CVG </a></li>
-			<li><a href=""> Nous contacter </a></li>
-			<li><a href=""> Toutes nos boutiques </a></li>
-			<li><a href=""> Mentions légales </a></li>
-		</ul>	
-		
-	</footer>
-			
+    <ul>
+      <li><a href=""> CGV </a></li>
+      <li><a href=""> Nous contacter </a></li>
+      <li><a href=""> Toutes nos boutiques </a></li>
+      <li><a href=""> Mentions légales </a></li>
+    </ul> 
+    
+  </footer>
+      
 </body>
 </html>
