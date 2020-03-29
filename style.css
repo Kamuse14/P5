@@ -146,6 +146,11 @@ footer li {
 	color: white;
 }
 
+/*  /////////////////////// alerte swal ////////////////////////////// */
+.swal2-confirm {
+	background-color: var(--bg-dark-color) !important; 
+}
+
 /*  /////////////////////// les boutons ////////////////////////////// */
 button {
 	cursor: pointer;
@@ -164,8 +169,6 @@ button {
 button:hover {
 	background-color: rgba(151, 83, 137, 0.7);
 }
-
-
 
 /*  /////////////////// articles - accueil //////////////////////// */
 section h2 {

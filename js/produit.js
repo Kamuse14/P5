@@ -11,11 +11,8 @@ class Produit{
 		window.mvp.produits[this.name] = this;
 		this.type = type;
 		this.dom = document.createElement("produit");
-		this.dom.id = this.id;
 		target.appendChild(this.dom);
-		if (this.type=="liste"){
-			this.dom.onclick = this.dataProduit.bind(this);
-		} 
+		this.dom.id = this.id;
 		this.render();
 
 	}
@@ -28,21 +25,20 @@ class Produit{
         		this.renderListe();
 		        break;
 		    case "detail":
+		    	console.log("coucou3");
         		this.renderDetail();
 		        break;
-		    case "panier":
-        		this.renderPanier();
-		        break;
-		      default:
+		    default:
 		        this.renderListe();
 		        break;
 		}
 	}
 // contenu de chaque produit dans sa mise en page "liste"
-	renderListe(){
+	renderListe(){ 
+		console.log("coucou");
 		this.dom.innerHTML += `
-			<figure id="meuble${this.name}" class="meuble" onclick="new Page('produit')" >
-				<img src="${this.image}" alt="${this.nameLong}"/>
+			<figure id="meuble${this.name}" class="meuble" onclick="initPage('produit')" >
+				<img src="${this.image}" alt="${this.nameLong}" onclick="swal('Bravo!', 'Vous avez cliqué sur une image.', 'success')"/>
 				<figcaption>${this.nameLong}</figcaption>			
 				<h3>${this.price}€</h3>	
 			</figure>
@@ -51,10 +47,10 @@ class Produit{
 // contenu du produit sélectionné
 	renderDetail(){
 		let vernis = ""; 
-		for (let j=0; j<this.vernis.length; j++) {
-			vernis += `<option value="${this.vernis[j]}">${this.vernis[j]}</option>`;
+		for (let i=0; i<this.vernis.length; i++) {
+			vernis += `<option value="${this.vernis[i]}">${this.vernis[i]}</option>`;
 		}
-
+		
 		this.dom.innerHTML = `
 			<figure id=${this.name}>
 				<img src="${this.image}" alt="${this.nameLong}"/>
@@ -72,12 +68,8 @@ class Produit{
 				</div>	
 			</figure>	
 		`;
+		console.log("coucou4");
 	}
 
-// stockage des données du produit sélectionné
-	dataProduit() {
-		localStorage.setItem("produitClique", this.id);
-	}
-
-
+	
 }

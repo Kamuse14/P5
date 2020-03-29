@@ -11,7 +11,7 @@
   <link rel="stylesheet" type="text/css" href="style.css"/>
 
   <script src="https://kit.fontawesome.com/4f52cc11e8.js" crossorigin="anonymous"></script>
-  <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
    <!--  <script type="text/javascript" src="js/contact.js"></script> 
   <script type="text/javascript" src="js/panier.js"></script> -->
   <script type="text/javascript" src="js/produit.js"></script> 
@@ -21,7 +21,6 @@
   <script type="text/javascript">
 
     window.mvp = {
-      // "burger": {},
       "produits": {},
       // "panier": {},
       // "contact": {}
@@ -29,7 +28,6 @@
 
     function initPage(contexte){
       new Connector("http://localhost:3000/api/");
-      //new Burger(document.getElementById("deroulant"), contexte);
       new Page(document.getElementsByTagName("section")[0], contexte);
     }
   </script>
@@ -43,7 +41,7 @@
     </div>  
     <div id="cart" class="cart-btn">
       <!-- ici le logo panier avec son lien vers renderPanier + éventuellement son compteur -->
-      <span class="nav-icon" onclick="new Page('panier')">
+      <span class="nav-icon" onclick="initPage('panier')">
         <i class="fas fa-cart-plus"></i>
       </span>
       <div class="cart-items">0</div>

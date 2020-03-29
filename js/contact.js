@@ -2,27 +2,35 @@
 class Contact {
 	constructor(data, target){
 		this.contact = {};
-		this.firstName = "";
-		this.lastName = "";
-		this.address = "";
-		this.city = "";
-		this.email = "";
-		//this.dom = document.createElement("formulaire");
-		//this.dom.id = "formulaire";
+		this.firstName = document.getElementById("firstName").value;
+		this.lastName = document.getElementById("lastName").value;
+		this.address = document.getElementById("address").value;
+		this.city = document.getElementById("city").value;
+		this.email = document.getElementById("email").value;
+		this.dom = document.createElement("formulaire");
+		this.dom.id = "formulaire";
 		window.mvp.contact = this;
 
-		this.saveContact();
+		this.contact= {
+			"firstName": this.firstName,
+			"lastName": this.lastName,
+			"address": this.address,
+			"city": this.city,
+			"email": this.email
+		}
+
+		this.renderContact();
 	}
 	//sauvegarde des données dans le sessionStorage => même en changeant ou en rafraichissant la page
 	saveContact() {
 		if(typeof sessionStorage!='undefined') {
-  			if('prenom' && 'nom' && 'adresse' && 'ville' && 'electronique' in sessionStorage) {
-    		swal("données sauvegardées",  'success');
-    		document.getElementById("firstName").value = sessionStorage.getItem('prenom');
-    		document.getElementById("lastName").value = sessionStorage.getItem('nom');
-    		document.getElementById("address").value = sessionStorage.getItem('adresse');
-    		document.getElementById("city").value = sessionStorage.getItem('ville');
-    		document.getElementById("email").value = sessionStorage.getItem('electronique');
+  			if('prenom' && 'nom' && 'adresse' && 'ville' && 'electronique' in sessionStorage) {//pas certaine que ce soit utile
+    		document.getElementById("firstName").value = sessionStorage.getItem('prenom');//essayer les différentes écritures
+    		this.lastName = sessionStorage.getItem('nom');
+    		address = sessionStorage.getItem('adresse');
+    		city = sessionStorage.getItem('ville');
+    		email = sessionStorage.getItem('electronique');
+    		 swal("données sauvegardées",  'success');
  			 }
 		} else {
 		  alert("données non sauvegardées", "error");
@@ -63,7 +71,9 @@ class Contact {
 					</label>
 					<input id="email" class="form-control" type="email" pattern="^[a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6}$" placeholder="utilisateur@domaine.fr" name="electronique" onchange="sessionStorage.electronique=this.value" required />
 				</div>
-				<button id="btn-envoyer" type="submit"><i class="far fa-paper-plane"></i> Envoyer</button>
+				<div id=validation onclick="new Page('validation')">
+					<button id="btn-envoyer" onclick="swal('Commande validée !', 'Vous allez recevoir un identifiant de commande.', 'success')" type="submit"><i class="far fa-paper-plane"></i> Envoyer</button>
+				</div>
 			</form>
 		`;
 	}
