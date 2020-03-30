@@ -14,4 +14,18 @@ class Connector{
       //console.log(data);
       return data; 
   }
+
+  async postData(chemin) {
+     let data = await fetch(this.url+chemin, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }, 
+      method: 'POST',
+    })
+      .then(async (response)=> {
+        return await response.json();
+      });
+     return data;  
+  }
 }

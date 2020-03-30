@@ -1,4 +1,4 @@
-// page Formulaire
+// données Formulaire
 class Contact {
 	constructor(data, target){
 		this.contact = {};
@@ -71,10 +71,21 @@ class Contact {
 					</label>
 					<input id="email" class="form-control" type="email" pattern="^[a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6}$" placeholder="utilisateur@domaine.fr" name="electronique" onchange="sessionStorage.electronique=this.value" required />
 				</div>
-				<div id=validation onclick="new Page('validation')">
+				<div id=validation onclick="initPage('validation')">
 					<button id="btn-envoyer" onclick="swal('Commande validée !', 'Vous allez recevoir un identifiant de commande.', 'success')" type="submit"><i class="far fa-paper-plane"></i> Envoyer</button>
 				</div>
 			</form>
 		`;
 	}
 }
+// forme de l'objet à renvoyer à l'API pour obtenir un identifiant de commande
+// { 
+// "contact": {
+// 			"firstName": "premon",
+// 			"lastName": "nom",
+// 			"address": "adresse",
+// 			"city": "ville",
+// 			"email": "user@mail.fr"
+// 		},
+// "products": ["5be9cc611c9d440000c1421e"]
+// }

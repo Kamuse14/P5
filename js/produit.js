@@ -12,7 +12,6 @@ class Produit{
 		this.type = type;
 		this.dom = document.createElement("produit");
 		target.appendChild(this.dom);
-		this.dom.id = this.id;
 		this.render();
 
 	}
@@ -25,7 +24,7 @@ class Produit{
         		this.renderListe();
 		        break;
 		    case "detail":
-		    	console.log("coucou3");
+		    	console.log("coucou4");
         		this.renderDetail();
 		        break;
 		    default:
@@ -64,11 +63,11 @@ class Produit{
 				</div>
 				<div id="addbtn">
 					<h3>${this.price}€</h3>	
-					<button id="add-panier" type="submit" onclick="new Page('panier')"><i class="fas fa-cart-plus"></i> Ajouter au panier</button>
+					<button id="add-panier" type="submit" onclick="initPage('commande')"><i class="fas fa-cart-plus"></i> Ajouter au panier</button>
 				</div>	
 			</figure>	
 		`;
-		console.log("coucou4");
+		console.log("coucou5");
 	}
 
 	

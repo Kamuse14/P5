@@ -15,11 +15,12 @@ class Page{
       case "validation":
         this.renderValidation();
         break;
-      case "panier":
-        this.renderPanier();
+      case "commande":
+        this.renderCommande();
         break;
       case "produit":
         console.log("coucou2");
+        //target.removeChild(this.dom);
         this.renderProduit();
         break;
       default:
@@ -37,23 +38,28 @@ class Page{
   }
 //Affichage description du produit sélectionné
   async renderProduit(){
-    //faire une boucle pour les id (qui sont définis dans Produit mais pas dans Page)
-   // let data = await window.mvp.dataBase.getData("furniture/" + id); 
-    let data = await window.mvp.dataBase.getData("furniture/5be9cc611c9d440000c1421e");
+    console.log("coucou3");
+    // 5be9cc611c9d440000c1421e ou bien // :_id ?
+    // faire une boucle pour les id (qui sont définis dans Produit mais pas dans Page)
+    // let data = await window.mvp.dataBase.getData("furniture/" + id);
+    // récupérer 
+    let data = await window.mvp.dataBase.getData(`furniture/5be9cc611c9d440000c1421e`);
    //console.log(data);
     new Produit(data, "detail", this.dom);
+
     //}  
   }
-//Affichage du panier : commande  + formulaire
-  async renderPanier(){
-    // this.dom.innerHTML = `<h2 id="commande">Test commande</h2>`;
-    // let data = await window.mvp.dataBase.getData("furniture/" + id);
+//Affichage de la commande : panier  + formulaire
+  async renderCommande(){
+    this.dom.innerHTML = `<h2>Test page commande vide</h2>`;
+    let data = await window.mvp.dataBase.getData(`furniture/5be9cc611c9d440000c1421e`);
     // new Panier(data, this.dom);
     // new Contact(dataUser, this.dom);
 
   }
 //Affichage du message de validation
   async renderValidation(){
+
   }
 
   change(newPage, idProduit=null){
