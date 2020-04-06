@@ -22,7 +22,7 @@
 
     window.mvp = {
       "produits": {},
-      "panier": {},
+      //"panier": {},
       // "contact": {}
     }
 
@@ -35,13 +35,13 @@
 
 <body onload="initPage('liste')" >
   <header class="navbar">
-    <div id="home" onclick="initPage('liste')"><i class="fas fa-home"></i></div>
+    <div id="home" onclick="window.mvp.page.change('liste')"><i class="fas fa-home"></i></div>
     <div id="title">
       <h1><i class="fas fa-chair"></i></i> Orifurniture</h1>
     </div>  
     <div id="cart" class="cart-btn">
       <!-- ici le logo panier avec son lien vers renderPanier + éventuellement son compteur -->
-      <span class="nav-icon" onclick="initPage('commande')">
+      <span class="nav-icon" onclick="window.mvp.page.change('panier')">
         <i class="fas fa-cart-plus"></i>
       </span>
       <div class="cart-items">0</div>

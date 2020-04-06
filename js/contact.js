@@ -11,13 +11,13 @@ class Contact {
 		this.dom.id = "formulaire";
 		window.mvp.contact = this;
 
-		this.contact= {
-			"firstName": this.firstName,
-			"lastName": this.lastName,
-			"address": this.address,
-			"city": this.city,
-			"email": this.email
-		}
+		// this.contact= {
+		// 	"firstName": this.firstName,
+		// 	"lastName": this.lastName,
+		// 	"address": this.address,
+		// 	"city": this.city,
+		// 	"email": this.email
+		// }
 
 		this.renderContact();
 	}
@@ -25,11 +25,11 @@ class Contact {
 	saveContact() {
 		if(typeof sessionStorage!='undefined') {
   			if('prenom' && 'nom' && 'adresse' && 'ville' && 'electronique' in sessionStorage) {//pas certaine que ce soit utile
-    		document.getElementById("firstName").value = sessionStorage.getItem('prenom');//essayer les différentes écritures
+    		this.firstName = sessionStorage.getItem('prenom');//essayer les différentes écritures
     		this.lastName = sessionStorage.getItem('nom');
-    		address = sessionStorage.getItem('adresse');
-    		city = sessionStorage.getItem('ville');
-    		email = sessionStorage.getItem('electronique');
+    		this.address = sessionStorage.getItem('adresse');
+    		this.city = sessionStorage.getItem('ville');
+    		this.email = sessionStorage.getItem('electronique');
     		 swal("données sauvegardées",  'success');
  			 }
 		} else {
@@ -40,7 +40,7 @@ class Contact {
 	renderContact() {
 		this.dom.innerHTML = `
 			<h2>Vos coordonnées</h2>
-			<form method="post" action="http://localhost:3000/api/furniture/order">
+			<form id= "inscription" method="post" action="http://localhost:3000/api/furniture/order">
 				<div class="form-group">
 					<label for="firstName">
 						Prénom : 
@@ -72,9 +72,26 @@ class Contact {
 					<input id="email" class="form-control" type="email" pattern="^[a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6}$" placeholder="utilisateur@domaine.fr" name="electronique" onchange="sessionStorage.electronique=this.value" required />
 				</div>
 				<div id=validation onclick="initPage('validation')">
-					<button id="btn-envoyer" onclick="swal('Commande validée !', 'Vous allez recevoir un identifiant de commande.', 'success')" type="submit"><i class="far fa-paper-plane"></i> Envoyer</button>
+					<button id="btn-envoyer" onclick="" type="submit"><i class="far fa-paper-plane"></i> Envoyer</button>
 				</div>
 			</form>
+		`;
+	}
+
+	validation() {
+		document.getElementById("inscription").addEventListener("submit", () {
+			swal('Commande validée !', 'Vous allez recevoir un identifiant de commande.', 'success');
+			initPage('validation');
+			validationPage();
+		})
+	}
+
+	validationPage() {
+		this.dom = createElement("confirmation");
+		this.dom.innerHTML = `
+			<h2>Vous avez enregistré votre panier avez succès !</h2>
+			<p>Le montant de votre commande est de ${this.totalPanier()}€</p>
+			<p>Votre numéro de commande est       </p>
 		`;
 	}
 }

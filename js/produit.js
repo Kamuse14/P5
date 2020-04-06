@@ -13,7 +13,6 @@ class Produit{
 		this.dom = document.createElement("produit");
 		target.appendChild(this.dom);
 		this.render();
-
 	}
 //bascule d'un rendu à un autre 
 	render(){
@@ -24,7 +23,6 @@ class Produit{
         		this.renderListe();
 		        break;
 		    case "detail":
-		    	console.log("coucou4");
         		this.renderDetail();
 		        break;
 		    default:
@@ -34,9 +32,8 @@ class Produit{
 	}
 // contenu de chaque produit dans sa mise en page "liste"
 	renderListe(){ 
-		console.log("coucou");
 		this.dom.innerHTML += `
-			<figure id="meuble${this.name}" class="meuble" onclick="initPage('produit')" >
+			<figure id="meuble${this.name}" class="meuble" onclick="window.mvp.page.change('produit/${this.name}')">
 				<img src="${this.image}" alt="${this.nameLong}" onclick="swal('Bravo!', 'Vous avez cliqué sur une image.', 'success')"/>
 				<figcaption>${this.nameLong}</figcaption>			
 				<h3>${this.price}€</h3>	
@@ -63,12 +60,14 @@ class Produit{
 				</div>
 				<div id="addbtn">
 					<h3>${this.price}€</h3>	
-					<button id="add-panier" type="submit" onclick="initPage('commande')"><i class="fas fa-cart-plus"></i> Ajouter au panier</button>
+					<button id="add-panier" onclick="window.mvp.page.change('panier/${this.name}')"><i class="fas fa-cart-plus"></i> Ajouter au panier</button>
 				</div>	
 			</figure>	
 		`;
-		console.log("coucou5");
 	}
 
-	
+	die(){
+		this.dom.parentNode.removeChild(this.dom);
+		delete(window.mvp.produits[this.name]);
+	}
 }

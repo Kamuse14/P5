@@ -1,73 +1,90 @@
 // Gère le changement virtuel de page
 class Page{
   constructor(target, pageActuelle){
-    this.dom = document.createElement("main");
+    window.mvp.page  = this;
+    this.dom          = document.createElement("main");
+    this.idProduit    = null;
+    this.definePage(pageActuelle);
     target.appendChild(this.dom);
-    window.mvp.page = this;
-    this.pageActuelle = pageActuelle;
+    this.createTitle();
     this.render();
   }
 
-//bascule d'un affichage page à un autre
-  render(){
-    this.dom.innerHTML = ``;
+ definePage(newPage){
+    this.pageActuelle = newPage;
+    if (this.pageActuelle.indexOf("/") !== -1) { //si le contenu de la page contient le caractère "/" 
+      this.pageActuelle = this.pageActuelle.split("/"); //split identifie "/" comme séparateur et 
+      //divise la chaîne de caractère "product/Cross"
+      this.produitName  = this.pageActuelle[1]; // c'est à dire le nom (court) du produit sélectionné
+      this.pageActuelle = this.pageActuelle[0]; //c'est à dire "produit"
+    }
+  }
+
+//bascule d'un affichage page à un autre 
+ render(){
+    // console.clear();
+    console.log(this.pageActuelle);
     switch (this.pageActuelle) {
       case "validation":
+        this.title.innerText = "Validation de votre commande";
         this.renderValidation();
         break;
       case "commande":
+        this.title.innerText = "Votre commande";
         this.renderCommande();
         break;
       case "produit":
-        console.log("coucou2");
-        //target.removeChild(this.dom);
-        this.renderProduit();
+        //window.history.replaceState({index:"produit"}, "page détail", "produit.html");
+        this.title.innerText = "Détail";
+        this.clearProducts(this.produitName);
         break;
       default:
+        this.title.innerText = "Nos produits";
+        this.clearProducts();
         this.renderList();
         break;
     }
   }
+
+  clearProducts(keep=null){
+    for (let [key, value] of Object.entries(window.mvp.produits)) { //renvoie un tableau des propriétés
+        // énumérables d'un objet dont la clé est une chaîne de caractères.
+        //console.log(`${key}: ${value}`);
+        if(key === keep) window.mvp.produits[key].renderDetail(); //pour la clé = nom du produit cliqué : 
+        //renderDétail du produit
+        else window.mvp.produits[key].die(); //on supprime les autres
+    }
+  }
+
 //Affichage accueil : liste des produits
   async renderList(){
-    this.dom.innerHTML = `<h2 id="furnitures">Nos produits</h2>`;
     let data = await window.mvp.dataBase.getData("furniture");
     for(var i=0; i<data.length; i++) {
       new Produit(data[i], "liste", this.dom);
+      //console.log(data[i]);
     }
   }
-//Affichage description du produit sélectionné
-  async renderProduit(){
-    console.log("coucou3");
-    // 5be9cc611c9d440000c1421e ou bien // :_id ?
-    // faire une boucle pour les id (qui sont définis dans Produit mais pas dans Page)
-    // let data = await window.mvp.dataBase.getData("furniture/" + id);
-    // récupérer 
-    let data = await window.mvp.dataBase.getData(`furniture/5be9cc611c9d440000c1421e`);
-   //console.log(data);
-    new Produit(data, "detail", this.dom);
 
-    //}  
-  }
 //Affichage de la commande : panier  + formulaire
   async renderCommande(){
-    this.dom.innerHTML = `<h2>Test page commande vide</h2>`;
-    let data = await window.mvp.dataBase.getData(`furniture/5be9cc611c9d440000c1421e`);
-    // new Panier(data, this.dom);
+    // new Panier(data, this.dom); //c'est encore un autre affichage de produit, doit-on recréer une classe "panier" ?
     // new Contact(dataUser, this.dom);
 
   }
 //Affichage du message de validation
   async renderValidation(){
+    // new Commande
 
   }
 
-  change(newPage, idProduit=null){
-    this.pageActuelle = newPage();
-    //on ajoute dans le sessionStorage le produit en cours
+  change(newPage){
+    this.definePage(newPage);
     this.render();
   }
-
-
+  
+  createTitle(){
+    this.title = document.createElement("h2");
+    this.dom.appendChild(this.title);
+  }
 }
      //swal('Merci!',  'Vous avez validé votre commande !',  'success');
