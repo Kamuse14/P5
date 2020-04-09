@@ -8,7 +8,9 @@ class Produit{
 		this.image = data.imageUrl;
 		this.vernis = data.varnish;
 		this.id = data._id;
-		window.mvp.produits[this.name] = this;
+		//this.meuble = {};
+
+		window.mvp.products[this.name] = this;
 		this.type = type;
 		this.dom = document.createElement("produit");
 		target.appendChild(this.dom);
@@ -16,7 +18,6 @@ class Produit{
 	}
 //bascule d'un rendu à un autre 
 	render(){
-		//console.log('hello1');
 		this.dom.innerHTML = ``;
 		switch (this.type) {
 			case "liste":
@@ -34,7 +35,7 @@ class Produit{
 	renderListe(){ 
 		this.dom.innerHTML += `
 			<figure id="meuble${this.name}" class="meuble" onclick="window.mvp.page.change('produit/${this.name}')">
-				<img src="${this.image}" alt="${this.nameLong}" onclick="swal('Bravo!', 'Vous avez cliqué sur une image.', 'success')"/>
+				<img src="${this.image}" alt="${this.nameLong}"/>
 				<figcaption>${this.nameLong}</figcaption>			
 				<h3>${this.price}€</h3>	
 			</figure>
@@ -47,6 +48,15 @@ class Produit{
 			vernis += `<option value="${this.vernis[i]}">${this.vernis[i]}</option>`;
 		}
 		
+		// this.meuble = {
+		// 	name: "this.name",
+		// 	nameLong: "this.nameLong",
+		// 	id: "this.id",
+		// 	image: "this.image",
+		// 	price: "this.price"
+		// };
+		// console.log(this.meuble);
+
 		this.dom.innerHTML = `
 			<figure id=${this.name}>
 				<img src="${this.image}" alt="${this.nameLong}"/>
@@ -60,7 +70,7 @@ class Produit{
 				</div>
 				<div id="addbtn">
 					<h3>${this.price}€</h3>	
-					<button id="add-panier" onclick="window.mvp.page.change('panier/${this.name}')"><i class="fas fa-cart-plus"></i> Ajouter au panier</button>
+					<button id="add-panier" onclick="window.mvp.panier.ajouteProduit({name: '${this.name}', nameLong: '${this.nameLong}', id: '${this.id}', image: '${this.image}', price: '${this.price}'})"><i class="fas fa-cart-plus"></i> Ajouter au panier</button>
 				</div>	
 			</figure>	
 		`;
@@ -68,6 +78,7 @@ class Produit{
 
 	die(){
 		this.dom.parentNode.removeChild(this.dom);
-		delete(window.mvp.produits[this.name]);
+		delete(window.mvp.products[this.name]);
 	}
+
 }

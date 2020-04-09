@@ -47,16 +47,16 @@ class Page{
   }
 
   clearProducts(keep=null){
-    for (let [key, value] of Object.entries(window.mvp.produits)) { //renvoie un tableau des propriétés
+    for (let [key, value] of Object.entries(window.mvp.products)) { //renvoie un tableau des propriétés
         // énumérables d'un objet dont la clé est une chaîne de caractères.
         //console.log(`${key}: ${value}`);
-        if(key === keep) window.mvp.produits[key].renderDetail(); //pour la clé = nom du produit cliqué : 
+        if(key === keep) window.mvp.products[key].renderDetail(); //pour la clé = nom du produit cliqué : 
         //renderDétail du produit
-        else window.mvp.produits[key].die(); //on supprime les autres
+        else window.mvp.products[key].die(); //on supprime les autres
     }
   }
 
-//Affichage accueil : liste des produits
+//Affichage accueil : liste des products
   async renderList(){
     let data = await window.mvp.dataBase.getData("furniture");
     for(var i=0; i<data.length; i++) {

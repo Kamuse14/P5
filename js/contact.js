@@ -12,11 +12,11 @@ class Contact {
 		window.mvp.contact = this;
 
 		// this.contact= {
-		// 	"firstName": this.firstName,
-		// 	"lastName": this.lastName,
-		// 	"address": this.address,
-		// 	"city": this.city,
-		// 	"email": this.email
+		// 	firstName: "this.firstName",
+		// 	lastName: "this.lastName",
+		// 	address: "this.address",
+		// 	city: "this.city",
+		// 	email: "this.email"
 		// }
 
 		this.renderContact();
