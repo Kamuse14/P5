@@ -29,10 +29,10 @@ class Page{
         this.title.innerText = "Validation de votre commande";
         this.renderValidation();
         break;
-      case "commande":
-        this.title.innerText = "Votre commande";
-        this.renderCommande();
-        break;
+      // case "commande":
+      //   this.title.innerText = "Votre commande";
+      //   this.renderCommande();
+      //   break;
       case "produit":
         //window.history.replaceState({index:"produit"}, "page détail", "produit.html");
         this.title.innerText = "Détail";

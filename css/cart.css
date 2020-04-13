@@ -17,20 +17,30 @@ cart.recap {
   justify-content: center;
 }
 
-/*cart.recap:active  {
-  display: none;
-}*/
+cart.recap:target  {
+  display: block;
+}
 
 modale {
-  display: flex;
   background-color:white;
-  min-width: 50vh;
+  width: 50vh;
+  overflow-y: auto;
 }
 
 cart h2 {
   margin-top: 1rem;
   margin-left: 2rem;
 }
+
+#close-zoom {
+  text-align: right;
+  margin-right: 1rem;
+  font-size: 2.5em;
+}
+
+#close-zoom:hover {
+  color: rgba(151, 83, 137, 0.7);
+ }
 
 /*  /////////////// tableau de commande ////////////////////// */
 table {
@@ -110,4 +120,16 @@ input {
 }
 #addbutton {
   margin-top: 1rem;
+}
+
+/* Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) { 
+  
+  modale {
+    width: auto;
+  }
+
+  #commande {
+    display: flex;
+  }
 }

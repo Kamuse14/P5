@@ -26,13 +26,33 @@ class Panier {
 				break;
 			// case "":
 				
-	  //       break;
+	  //      	break;
 	   		default:
 	        	this.renderIcon();	
 	        break;
 		}
 	}
 	
+	renderIcon(){
+		this.dom.innerHTML =  `
+	      <span class="nav-icon" onclick="window.mvp.panier.zoom()">
+	        <i class="fas fa-cart-plus"></i>
+	      </span>
+	      <div class="cart-items">${this.products.length}</div>
+		`;
+	}
+
+	zoom(){
+		this.type = "recap";
+		this.render();
+	}
+
+	navIcon(){ // ne fonctionne pas
+		//this dom = document.getElementById('cart');
+		this.type = "icone";
+		this.render();
+	}
+
 	recupPanier() {//récupération des données du localStorage
 		let recupStorage = JSON.parse(localStorage.getItem("panier"));
 		if(recupStorage) {
@@ -43,10 +63,10 @@ class Panier {
 	}
 
 	ajouteProduit(produit){//on pousse le produit dans le tableau "products"
-			this.products.push(produit);
-			localStorage.setItem("panier", JSON.stringify(this.products));
-			console.log(localStorage);
-			this.render();
+		this.products.push(produit);
+		localStorage.setItem("panier", JSON.stringify(this.products));
+		console.log(localStorage);
+		this.render();
 	}
 
 	totalPanier() {
@@ -57,52 +77,60 @@ class Panier {
 		return total;
 	}
 
-	zoom(){
-		this.type = "recap";
-		this.render();
-	}
-
 	enteteRecap() {
+		// let modale = document.getElementById("modale");
+		// window.mvp.onclick = function(event){
+		// 	if(event.target==modale) {
+		// 		this.navIcon();
+		// 	}
+		// }
+		
 		this.dom.className = "recap";
 		this.dom.id = "recap";
-		// document.getElementById("recap").onclick = this.supprimeModale();
 		this.dom.innerHTML =  `
 			<modale id="modale">
-				<commande>
-					<h2>Votre commande </h2>
-					<table id="tableau" >
-						<thead>
-							<tr>
-								<th>Produit</th>
-								<th>Nom du produit</th>
-								<th>Prix</th>
-								<th><i class="far fa-trash-alt"></th>
-							</tr>
-						</thead>
+				<div id="close-zoom" onclick="window.mvp.panier.navIcon()">
+		        	<i class="fas fa-times"></i>
+		      	</div>
+		      	<div id="commande">
+					<panier>
+						<h2>Votre commande </h2>
+						<table id="tableau">
+							<thead>
+								<tr>
+									<th>Produit</th>
+									<th>Nom du produit</th>
+									<th>Prix</th>
+									<th><i class="far fa-trash-alt"></th>
+								</tr>
+							</thead>
 
-						<!-- tbody js ici -->
+							<!-- tbody js ici -->
 
-					</table>
-				</commande>
-				
+						</table>
+					</panier>
+
+					<!-- formulaire ici -->
+
+				</div>
 			</modale>
 		`;
 	}
 
 	renderRecap(){
-		this.dom = document.getElementById("tableau").appendChild(document.createElement("tbody"));
+		let lignePanier = document.getElementById("tableau").appendChild(document.createElement("tbody"));
 		for (let produit of this.products) {
-			this.dom.innerHTML += `
+			lignePanier.innerHTML += `
 				<tr id="indexPanier">
 					<td><img src="${produit.image}" alt="${produit.nameLong}"/></td>
 					<td>${produit.nameLong}</td>
 					<td>${produit.price}€</td>
-					<td id="trash-${produit.name}" class="trash"><i class="far fa-trash-alt"></i></td>
+					<td id="trash-${produit.name} onclick="window.mvp.panier.supprimeProduitPanier()" class="trash"><i class="far fa-trash-alt"></i></td>
 				</tr>
 			`;
 		}
 
-		this.dom.innerHTML += `
+		lignePanier.innerHTML += `
 			<tr id="total">
 				<td colspan="2"> Total :</td>
 				<td>${this.totalPanier()}€</td>
@@ -110,9 +138,16 @@ class Panier {
 		`;	
 	}
 
+	supprimeProduitPanier() { // ne fonctionne pas => conflit avec le onclick zoom ?
+		// console.log("test");
+		// document.getElementById("indexPanier").parentNode.removeChild(document.getElementById("indexPanier"));
+		// delete(window.mvp.products[${produit.name}]);
+		// localStorage.removeItem("panier");
+	}
+
 	renderForm() {
-		this.dom = document.getElementById("modale").appendChild(document.createElement("formulaire"));
-		this.dom.innerHTML = `
+		let formulaire = document.getElementById("commande").appendChild(document.createElement("formulaire"));
+		formulaire.innerHTML = `
 			<h2>Vos coordonnées </h2>
 			<form id= "inscription" method="post" action="http://localhost:3000/api/furniture/order">
 				<div class="form-group">
@@ -151,19 +186,4 @@ class Panier {
 			</form>
 		`;
 	}
-
-	supprimeModale(){
-			// this.type = "icone";
-			// this.render();
-	}
-
-	renderIcon(){
-		this.dom.innerHTML =  `
-	      <span class="nav-icon" onclick="window.mvp.panier.zoom()">
-	        <i class="fas fa-cart-plus"></i>
-	      </span>
-	      <div class="cart-items">${this.products.length}</div>
-		`;
-	}
-
 }

@@ -55,7 +55,6 @@ class Produit{
 		// 	image: "this.image",
 		// 	price: "this.price"
 		// };
-		// console.log(this.meuble);
 
 		this.dom.innerHTML = `
 			<figure id=${this.name}>

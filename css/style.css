@@ -122,8 +122,6 @@ footer li {
   background: rgba(151, 83, 137, 0.7);
 }
 
-
-
 /* ///////////////////////// icône panier //////////////////////////*/
 .nav-icon {
 	font-size: 2.5em;
@@ -135,7 +133,7 @@ footer li {
 	cursor: pointer;
 }
 
-.cart-btn :hover {
+.nav-icon :hover {
  	color: rgba(151, 83, 137, 0.7);
  }
 
@@ -310,8 +308,8 @@ select #mon-vernis {
 	}
 
 	#formulaire h2 {
-	margin-left: 0;
-}
+		margin-left: 0;
+	}
 
 	form {
 		margin: 1rem auto; /* essai centrage*/
