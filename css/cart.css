@@ -29,7 +29,7 @@ modale {
 
 cart h2 {
   margin-top: 1rem;
-  margin-left: 2rem;
+  margin-left: 1rem;
 }
 
 #close-zoom {
@@ -40,7 +40,22 @@ cart h2 {
 
 #close-zoom:hover {
   color: rgba(151, 83, 137, 0.7);
- }
+}
+
+#commande {
+    display: flex;
+    flex-direction: column;
+}
+
+panier, registration {
+  background-color: var(--bg-light-color);
+  box-shadow: 2px 2px 10px #F3E9F1;
+  /*width: 80%;*/
+  height: auto;
+  text-align: center;
+  margin: 2rem 1rem;
+  padding: 1rem;
+}
 
 /*  /////////////// tableau de commande ////////////////////// */
 table {
@@ -89,19 +104,10 @@ td .fa-trash-alt {
 
 /*  /////////////////// formulaire //////////////////////// */
 formulaire {
-  margin-right: 1rem;
+  text-align: center;
 }
 
-form {
-  background-color: var(--bg-light-color);
-  box-shadow: 2px 2px 10px #F3E9F1;
-  width: 80%;
-  height: auto;
-  margin: 2rem auto;
-  padding: 1rem;
-}
-
-#validation {
+.sendform {
   text-align: center;
 }
 
@@ -131,5 +137,6 @@ input {
 
   #commande {
     display: flex;
+    flex-direction: row;
   }
 }
