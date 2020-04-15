@@ -6,7 +6,7 @@
 	Ligne 000 - Utils (variables)
 	Ligne 000 - Layout (header, footer)
 	Ligne 000 - Components
-	 	 -> menu déroulant
+	 	 -> 
 	 	 -> 
 	 	
 	Ligne 000  - Pages (accueil, meuble1,2,3,4,5, panier, confirmation )
@@ -42,30 +42,15 @@ li {
 
 /* //////////////////////////// LAYOUT //////////////////////////////// */
 /* //////////////////////////// header //////////////////////////////// */
-header a {
- 	color: var(--bg-violet);
-}
-header a:hover {
- 	color: var(--bg-orange);
- }
-
 header {
 	display: flex;
-	justify-content: stretch;
+	justify-content: space-around;
 	align-items: center;
 	background-color: var(--bg-color);
 	top: 0;
 	left: 0;
 	height: 5rem;
 	width: 100%;
-}
-
-#title {
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	min-width: 250px;
-	margin-right: 1rem;
 }
 
 h1 .fa-chair {
@@ -117,73 +102,75 @@ footer li {
 }
 
 /* //////////////////////////// COMPONENTS //////////////////////////// */ 
-/* //////////////////////////// menu hamburger /////////////////////////*/
-.accordion {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
-
-.accordion-toggle {
+/* //////////////////////////// icône accueil /////////////////////////*/
+#home {
 	width: 38px;
 	height: 38px;
 	transition: background 0.1s linear;
   	background: var(--bg-dark-color);
   	border-radius: 8px;
  	color: #fff;
-  	position: absolute;
-  z-index: 10;
-  top: 12px;
-  left: 16px;
+    left: 16px;
   	font-size: 30px;
   	padding: 8px;
   	text-align: center;
   	text-decoration: none;
-}
-.accordion-toggle:hover {
-  background: var(--bg-violet);
+  	cursor: pointer;
 }
 
-.bigburger {
-  position: absolute;
-  z-index: 10;
-  top: 70px;
-  left: 16px;
+#home:hover {
+  background: rgba(151, 83, 137, 0.7);
 }
 
-.accordion-inner {
-	background-color: var(--bg-color);
-	justify-content: left;
-	padding: 1rem;
-}
-
-.accordion-inner li {
-	padding: 1rem;
-}
-
-a {
-	text-decoration: none;
-}
-
-/* ///////////////////// fin menu hambuger //////////////////////// */
 /* ///////////////////////// icône panier //////////////////////////*/
 .nav-icon {
-	font-size: 1.8em;
-}
+	font-size: 2.5em;
+} 
+
 .cart-btn {
+	color: var(--bg-dark-color);
 	position: relative;
 	cursor: pointer;
 }
+
+.nav-icon :hover {
+ 	color: rgba(151, 83, 137, 0.7);
+ }
+
 .cart-items {
 	position: absolute;
-	top: -8px;
+	top: -4px;
 	right: -8px;
-	background: var(--bg-dark-color);
+	background: var(--bg-orange);
 	padding: 0 5px;
 	border-radius: 30%;
 	color: white;
 }
+
+/*  /////////////////////// alerte swal ////////////////////////////// */
+.swal2-confirm {
+	background-color: var(--bg-dark-color) !important; 
+}
+
+/*  /////////////////////// les boutons ////////////////////////////// */
+button {
+	cursor: pointer;
+	background-color: var(--bg-dark-color);
+	box-shadow: 1px 1px 4px #975389;
+	border: none;
+	border-radius: 50px;
+	width: 200px;
+	font-size: 1.1em;
+	color: white;
+	padding: 0.6rem;
+	margin-top: 1rem;
+	margin-bottom: 1,5rem;
+}
+
+button:hover {
+	background-color: rgba(151, 83, 137, 0.7);
+}
+
 /*  /////////////////// articles - accueil //////////////////////// */
 section h2 {
 	text-align: left;
@@ -197,6 +184,10 @@ figure {
 	height: auto;
 	margin: 2rem auto;
 	padding-bottom: 1rem;
+}
+
+figure[id*="meuble"] {
+	cursor: pointer;
 }
 
 figure img, figcaption, figure p, figure h3 {
@@ -240,98 +231,63 @@ select #mon-vernis {
 #addbtn h3 {
 	font-size: 2em;
 }
-/*  /////////////////// page - PANIER //////////////////////// */
-/*  /////////////// tableau de commande ////////////////////// */
-#order {
-	margin: 1rem auto;
-}
 
-table {
-	margin: 1rem auto;
-	font-size: 0.8em;
-	border-collapse: collapse;
-	background-color: var(--bg-light-color);
-	box-shadow: 2px 2px 10px #F3E9F1;
-	width: 80%;
-	height: auto;
-	padding-bottom: 1rem;
-}
-table img {
-	margin: 0;
-	padding: 0.5rem;
-	text-align: center;
-	max-width: 90%;
-}
-
-table thead {
-	background-color: var(--bg-dark-color);
-	color: white;
-}
-
-td, th {
-	border: 1px solid grey;
-}
-thead tr th:first-child {
-	width: 100px;
-}
-
-td .fa-trash-alt {
+/*  /////////////////// pages - validation //////////////////////// */
+/* les points de suspension avant la page validation */
+#attente:hover {
 	cursor: pointer;
 }
 
-#total td:first-child {
-	text-transform: uppercase;
-	text-align: right;
+#attente:hover p {
+	display: none;
 }
 
-
-
-/*  /////////////////// formulaire //////////////////////// */
-#formulaire {
-	margin: 3rem auto;
-}
-
-form {
-	background-color: var(--bg-light-color);
-	box-shadow: 2px 2px 10px #F3E9F1;
-	width: 80%;
-	height: auto;
-	margin: 2rem auto;
-	padding: 1rem;
-}
-.form-group {
+#ellipsis {
 	display: flex;
-	flex-direction: column;
-
-}
-label {
-	display: flex;
-	align-items: left;
-    font-weight: 700
-}
-input {
-	margin-bottom: 0.5rem;
-}
-#addbutton {
-	margin-top: 1rem;
+	justify-content: center;
+	padding: auto;
 }
 
-/*  /////////////////////// les boutons ////////////////////////////// */
-
-button {
-	cursor: pointer;
-	background-color: var(--bg-dark-color);
-	box-shadow: 1px 1px 4px #975389;
-	border: none;
-	border-radius: 50px;
-	width: 200px;
-	font-size: 1.1em;
-	color: white;
-	padding: 0.6rem;
-	margin-top: 1rem;
-	margin-bottom: 1,5rem;
+.point {
+	background-color: var(--bg-orange);
+	border-radius: 50%;
+	height: 1vh;
+	width: 1vh;
+	margin: 0.5vh;
 }
 
+#ellipsis:hover .point--1 {
+	 animation: points 1000ms 200ms both infinite alternate ease-in-out;
+}
+#ellipsis:hover .point--2 {
+	 animation: points 1000ms  400ms both infinite alternate ease-in-out;
+}
+#ellipsis:hover .point--3 {
+	 animation: points 1000ms 600ms both infinite alternate ease-in-out;
+}
+
+@keyframes points {
+  0% {
+    transform: scale(0.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+#confirm {
+  background-color: var(--bg-light-color);
+  box-shadow: 2px 2px 10px #F3E9F1;
+  height: auto;
+  text-align: center;
+  margin: 2rem 1rem;
+  padding: 1rem;
+}
+
+.valid {
+	color: black;
+	font-size: 2em;
+}
 
  /* //////////////////////////// MEDIAS //////////////////////////// */ 
 /* Small devices (landscape phones, 576px and up) */
@@ -409,8 +365,8 @@ button {
 	}
 
 	#formulaire h2 {
-	margin-left: 0;
-}
+		margin-left: 0;
+	}
 
 	form {
 		margin: 1rem auto; /* essai centrage*/
