@@ -48,14 +48,6 @@ class Produit{
 			vernis += `<option value="${this.vernis[i]}">${this.vernis[i]}</option>`;
 		}
 		
-		// this.meuble = {
-		// 	name: "this.name",
-		// 	nameLong: "this.nameLong",
-		// 	id: "this.id",
-		// 	image: "this.image",
-		// 	price: "this.price"
-		// };
-
 		this.dom.innerHTML = `
 			<figure id=${this.name}>
 				<img src="${this.image}" alt="${this.nameLong}"/>

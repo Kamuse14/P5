@@ -18,7 +18,7 @@ class Panier {
 		this.electronique = sessionStorage.getItem("electronique");
 	}
 
-	render(){
+	render(){ // les différents rendus de la fenêtre modale
 		this.dom.innerHTML = ``;
 		switch (this.type) {
 			case "icone":
@@ -73,14 +73,14 @@ class Panier {
 		}
 	}
 
-	ajouteProduit(produit){//on pousse le produit dans le tableau "products"
+	ajouteProduit(produit){ //on pousse le produit dans le tableau "products"
 		this.products.push(produit);
 		localStorage.setItem("panier", JSON.stringify(this.products));
 		console.log(localStorage);
 		this.render();
 	}
 
-	totalPanier() {
+	totalPanier() { //calcul du total du panier
 		let total = 0;
 		for(let produit of this.products) {
 			total += parseInt(produit.price);
@@ -88,7 +88,7 @@ class Panier {
 		return total;
 	}
 
-	enteteRecap() {
+	enteteRecap() { // entête de la commande
 		this.dom.className = "recap";
 		this.dom.innerHTML =  `
 			<modale id="modale">
@@ -120,7 +120,7 @@ class Panier {
 		`;
 	}
 
-	renderRecap(){
+	renderRecap(){ // lignes des produits de la commande et total
 		let lignePanier = "";
 		for (let produit of this.products) {
 			lignePanier += `
@@ -128,7 +128,7 @@ class Panier {
 					<td><img src="${produit.image}" alt="${produit.nameLong}"/></td>
 					<td>${produit.nameLong}</td>
 					<td>${produit.price}€</td>
-					<td id="trash-${produit.name} onclick="window.mvp.panier.supprimeProduitPanier()" class="trash"><i class="far fa-trash-alt"></i></td>
+					<td id="trash-${produit.name} class="trash"><i class="far fa-trash-alt" onclick="window.mvp.panier.supprimeProduitPanier()"></i></td>
 				</tr>
 			`;
 		}
@@ -141,55 +141,58 @@ class Panier {
 		return lignePanier;
 	}
 
-	supprimeProduitPanier() { // ne fonctionne pas => conflit avec le onclick zoom ?
+	supprimeProduitPanier() { // ne fonctionne pas 
 		console.log("test");
 		// document.getElementById("indexPanier").parentNode.removeChild(document.getElementById("indexPanier"));
-		// delete(window.mvp.products[${produit.name}]);
-		// localStorage.removeItem("panier");
+		//delete(window.mvp.products[${produit.name}]); plante
+		localStorage.removeItem("panier[0]"); //ne fait rien si removeItem("panier") = supprime tout le panier du localStorage
 	}
 
 	renderForm() { // rendu du formulaire (non fonctionnel)
-		let formulaire = "";
+		let formulaire = ""; 
+		// j'ai enlevé type="submit" de <button>, ne change rien... nouvelle page dès qu'on clique sur entrée
+		// pattern="^[a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6}$" probablement inutile (doublon avec type="email")
 		formulaire = `
 			<h2>Vos coordonnées </h2>
-			<formulaire>
+			<form id="formulaire">
 				<div class="form-group">
 					<label for="firstName">
 						Prénom : 
 					</label>
-					<input id="firstname" class="form-control" type="text" pattern="[A-Z][a-z]{1,}" placeholder="Prénom" name="prenom" onchange="mvp.panier.update('prenom', this.value)" required />
+					<input id="firstName" class="form-control" type="text" pattern="[A-Z][a-z]{1,}" placeholder="Prénom" name="firstName" onchange="mvp.panier.update('firstName', this.value)" required />
 				</div>
 				<div class="form-group">
 					<label for="lastName">
 						Nom : 
 					</label>
-					<input id="lastName" class="form-control" type="text" pattern="[A-Z][a-z]+" placeholder="Nom" name="nom" onchange="mvp.panier.update('nom', this.value)" required />
+					<input id="lastName" class="form-control" type="text" pattern="[A-Z][a-z]+" placeholder="Nom" name="lastName" onchange="mvp.panier.update('lastName', this.value)" required />
 				</div>
 				<div class="form-group">
 					<label for="address">
 						Adresse : 
 					</label>
-					<input id="address" class="form-control" name="adresse" onchange="mvp.panier.update('adresse', this.value)" required />
+					<input id="address" class="form-control" name="address" onchange="mvp.panier.update('address', this.value)" required />
 				</div>
 				<div class="form-group">
 					<label for="city">
 						Ville : 
 					</label>
-					<input id="city" class="form-control" name="ville" onchange="mvp.panier.update('ville', this.value)" required />
+					<input id="city" class="form-control" name="city" onchange="mvp.panier.update('city', this.value)" required />
 				</div>
 				<div class="form-group">
 					<label for="email">
 						Email : 
 					</label>
-					<input id="email" class="form-control" type="email" pattern="^[a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6}$" placeholder="utilisateur@domaine.fr" name="electronique" onchange="mvp.panier.update('electronique', this.value)" required />
+					<input id="email" class="form-control" type="email" placeholder="utilisateur@domaine.fr" name="email" onchange="mvp.panier.update('email', this.value)" required />
 				</div>
-				<button id="btn-envoyer" class="sendform" onclick="mvp.panier.send()" type="submit"><i class="far fa-paper-plane"></i> Envoyer</button>	
-			</formulaire>
+				<button id="btn-envoyer" class="sendform" type="submit" onclick="mvp.panier.send()" ><i class="far fa-paper-plane"></i> Envoyer</button>	
+			</form>
 		`;
 		return formulaire;
 	}
-
-	renderSuccess() { // dernière page : validation de la commande avec son total et orderId
+	
+	async renderSuccess() { // dernière page : validation de la commande avec son total et orderId
+		//console.log(apiAnswer.orderId);
 		this.dom.innerHTML = `
 			<modale id="modale">
 				<div id="confirm" >
@@ -204,16 +207,16 @@ class Panier {
 								<span class="valid">${this.totalPanier()}€</span>
 							</p>
 							<p>Veuillez noter cet identifiant pour le suivi de votre commande 
-								<span class="valid"> orderId...</span>
+								<span class="valid">$this.apiAnswer.orderId}</span>
 							</p>
 						</div>
 					</div>
 				</div>
 			</modale>
 		`;
-	}
+	} // ${this.apiAnswer.orderId}
 
-	renderWaiting(){
+	renderWaiting(){ // rendu entre l'envoi du formulaire et la réception de l'orderId
 		this.dom.innerHTML =  `
 		<modale id="modale">
 			<div id="attente">
@@ -228,21 +231,28 @@ class Panier {
 		`;
 	}
 
-	async send(){
+	async send(){ // ce qui est envoyé à l'API 
 		this.type = "waiting";
 		this.render();
+
+		// for(let produit of this.products) {
+		// 	let productsId = this.products.push(produit.id);
+		// 	console.log(productsId)
+		// }
+		// return productsId;
 		const data = {
 			"contact": {
-				firstName	: this.prenom,
-				lastName	: this.nom,
-				address		: this.adresse,
-				city		: this.ville,
-				email		: this.electronique
+				firstName	: this.firstName,
+				lastName	: this.lastName,
+				address		: this.address,
+				city		: this.city,
+				email		: this.email
 			},
-			"products": this.products
+			"products": ['5beaadda1c9d440000a57d98'] //this.productsId // this.products
 		}
 		const apiAnswer = await window.mvp.dataBase.postData("furniture/order", data);
 		console.log(apiAnswer);
+		console.log(apiAnswer.orderId);
 		this.type = "success";
 		this.render();
 	}

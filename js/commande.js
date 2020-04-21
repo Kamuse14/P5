@@ -1,4 +1,4 @@
-// objet {{contact}, [products]} àenvoyer à l'API
+// objet {{contact}, [products]} à envoyer à l'API
 class Commande {
 	constructor(data, target){
 		
@@ -17,3 +17,8 @@ class Commande {
 // }
 
 }
+// promesse de controllers/furniture.js 
+// return res.status(201).json({
+//         contact: req.body.contact,
+//         products: furniture,
+//         orderId: orderId

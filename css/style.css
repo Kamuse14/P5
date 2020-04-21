@@ -58,7 +58,7 @@ h1 .fa-chair {
 }
 
 h1 {
- 	font: 1.8em "Finger Paint";
+ 	font: 1.7em "Finger Paint";
  	color: var(--txt-color);
  	margin: 0.5rem;
 }
@@ -111,9 +111,10 @@ footer li {
   	border-radius: 8px;
  	color: #fff;
     left: 16px;
-  	font-size: 30px;
-  	padding: 8px;
+  	font-size: 2em;
+  	padding: 6px;
   	text-align: center;
+  	align-items: center;
   	text-decoration: none;
   	cursor: pointer;
 }
@@ -124,7 +125,7 @@ footer li {
 
 /* ///////////////////////// icône panier //////////////////////////*/
 .nav-icon {
-	font-size: 2.5em;
+	font-size: 2.3em;
 } 
 
 .cart-btn {
@@ -343,12 +344,27 @@ select #mon-vernis {
 	figure {
 		width: 90%;
 		display: flex;
+		justify-content: space-around;
 		align-items: center;
 		padding: 0.7rem;
 	}
 	figure img {
+		max-width: 30%;
+		margin-left: 1rem;
+	}
+	div[id*="content"] {
 		max-width: 35%;
-		margin-left: 2rem;
+	}
+	div[id*="content"] figcaption {
+		font-size: 1.5em;
+	}
+	div[id*="content"] p {
+		font-size: 0.8em;
+	}
+
+	#addbtn {
+		max-width: 30%;
+		margin-right: 1rem;
 	}
 
 	figcaption, figure p, select #mon-vernis{

@@ -25,16 +25,8 @@ class Page{
     // console.clear();
     console.log(this.pageActuelle);
     switch (this.pageActuelle) {
-      case "validation":
-        this.title.innerText = "Validation de votre commande";
-        this.renderValidation();
-        break;
-      // case "commande":
-      //   this.title.innerText = "Votre commande";
-      //   this.renderCommande();
-      //   break;
       case "produit":
-        //window.history.replaceState({index:"produit"}, "page détail", "produit.html");
+        //history.replaceState({index:"${this.produitName}"}, "page détail", "${this.produitName}.html");
         this.title.innerText = "Détail";
         this.clearProducts(this.produitName);
         break;
@@ -58,23 +50,13 @@ class Page{
 
 //Affichage accueil : liste des products
   async renderList(){
+    //history.replaceState({index:"meubles"}, "page accueil", "meubles.html");
+    //console.log(history);
     let data = await window.mvp.dataBase.getData("furniture");
     for(var i=0; i<data.length; i++) {
       new Produit(data[i], "liste", this.dom);
       //console.log(data[i]);
     }
-  }
-
-//Affichage de la commande : panier  + formulaire
-  async renderCommande(){
-    // new Panier(data, this.dom); //c'est encore un autre affichage de produit, doit-on recréer une classe "panier" ?
-    // new Contact(dataUser, this.dom);
-
-  }
-//Affichage du message de validation
-  async renderValidation(){
-    // new Commande
-
   }
 
   change(newPage){
