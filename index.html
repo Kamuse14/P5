@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Orinoco - Vente de mobilier en bois massif</title>
+  <meta name="description" content="Orifurniture - Vous trouverez ici le mobilier de vos rêves..."/>
+
+  <link aria-label="puce Orinoco" rel="shortcut icon" type="image/png" href="images/logo.png">
+  
+  <link rel="stylesheet" type="text/css" href="css/modales.css"/>
+  <link rel="stylesheet" type="text/css" href="css/products.css"/>
+  <link rel="stylesheet" type="text/css" href="css/style.css"/>
+  <script src="https://kit.fontawesome.com/4f52cc11e8.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript" src="js/panier.js"></script>
+  <script type="text/javascript" src="js/produit.js"></script> 
+  <script type="text/javascript" src="js/connector.js"></script> 
+  <script type="text/javascript" src="js/page.js"></script>  
+
+  <script type="text/javascript">
+
+    window.mvp = {
+      "products": {},
+      //"panier": {},
+      // database
+    }
+
+    function initPage(contexte){
+      new Connector("http://localhost:3000/api/");
+      new Page(document.getElementsByTagName("section")[0], contexte);
+      new Panier(document.getElementById("cart"));
+    }
+  </script>
+</head>
+
+<body onload="initPage('liste')" >
+  <header class="navbar">
+    <div id="home" onclick="window.mvp.page.change('liste')"><i class="fas fa-home"></i></div>
+    <div id="title">
+      <h1><i class="fas fa-chair"></i></i> Orifurniture</h1>
+    </div>  
+    <div id="cart" class="cart-btn">
+      <!-- ici le logo panier avec affichages des fenêtres modales -->
+
+    </div>
+  </header>
+
+  <section id="contenu">
+      <!-- contenu généré en JS pour l'affichage liste ou l'affichage détail produit --> 
+  </section>
+
+  <footer>
+    <div id="stores">
+      <div class="boutique">
+        <h2>Orinoco</h2>
+        <p>vente en ligne</p>
+      </div>
+      <div class="boutique">
+        <h2>Orifurniture</h2>
+        <p>vente de mobilier en chêne</p>
+      </div>
+    </div>
+
+    <ul>
+      <li><a href=""> CGV </a></li>
+      <li><a href=""> Nous contacter </a></li>
+      <li><a href=""> Toutes nos boutiques </a></li>
+      <li><a href=""> Mentions légales </a></li>
+    </ul> 
+    
+  </footer>
+      
+</body>
+</html>
