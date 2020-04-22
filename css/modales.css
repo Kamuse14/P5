@@ -1,4 +1,20 @@
-/*  /////////////////// page - PANIER //////////////////////// */
+/*--------------------------------------------------*/
+          /*SOMMAIRE*/
+/*--------------------------------------------------*/
+/*
+  Ligne 016 - modale - PANIER
+    -> General
+    -> tableau de commande
+    -> formulaire
+  Ligne 151 - modale - VALIDATION
+    -> attente
+    -> validation
+     
+  Ligne 213 - Responsivity
+*/
+
+/*  /////////////////// modale - PANIER //////////////////////// */
+/*  /////////////////// modale - general //////////////////////// */
 cart {
   cursor: auto;
 }
@@ -31,7 +47,7 @@ cart h2 {
   margin-top: 1rem;
   margin-left: 1rem;
 }
-
+/* bouton "fermer" */
 #close-zoom {
   text-align: right;
   margin-right: 1rem;
@@ -58,8 +74,6 @@ panier, registration {
   margin: 2rem 1rem;
   padding: 1rem;
 }
-
-
 
 /*  /////////////// tableau de commande ////////////////////// */
 table {
@@ -104,8 +118,6 @@ td .fa-trash-alt {
   text-align: right;
 }
 
-
-
 /*  /////////////////// formulaire //////////////////////// */
 formulaire {
   text-align: center;
@@ -136,15 +148,122 @@ input {
   margin-top: 1rem;
 }
 
+/*  /////////////////// modale - VALIDATION //////////////////////// */
+/*  /////////////////// modale - attente //////////////////////// */
+#attente {
+  width: 10vh;
+  height: 6vh;
+}
+/* les points de suspension avant la modale validation */
+#attente:hover {
+  cursor: pointer;
+}
+
+#attente:hover p {
+  display: none;
+}
+
+#ellipsis {
+  display: flex;
+  justify-content: center;
+  padding: auto;
+}
+
+.point {
+  background-color: var(--bg-orange);
+  border-radius: 50%;
+  height: 1vh;
+  width: 1vh;
+  margin: 0.5vh;
+}
+
+#ellipsis:hover .point--1 {
+   animation: points 1000ms 200ms both infinite alternate ease-in-out;
+}
+#ellipsis:hover .point--2 {
+   animation: points 1000ms  400ms both infinite alternate ease-in-out;
+}
+#ellipsis:hover .point--3 {
+   animation: points 1000ms 600ms both infinite alternate ease-in-out;
+}
+
+@keyframes points {
+  0% {
+    transform: scale(0.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+/*  /////////////////// modale - validation //////////////////////// */
+#confirm {
+  background-color: var(--bg-light-color);
+  box-shadow: 2px 2px 10px #F3E9F1;
+  height: auto;
+  text-align: center;
+  margin: 2rem 1rem;
+  padding: 1rem;
+}
+
+.valid {
+  color: black;
+  font-size: 2em;
+}
+
+/* //////////////////////////// RESPONSIVITY //////////////////////////// */ 
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) { 
+  .form-group {
+    flex-direction: row;
+  }
+  
+  input {
+    margin: 0 2rem 0.5rem auto;
+    min-width: 300px;
+  }
+}
 /* Medium devices (tablets, 768px and up)*/
 @media (min-width: 768px) { 
-  
+  /* général */
   modale {
     width: auto;
   }
 
+  /* page panier */
   #commande {
     display: flex;
     flex-direction: row;
+  }
+
+  /* formulaire */
+  #formulaire {
+    width: 550px;
+  }
+
+  #formulaire h2 {
+    margin-left: 0;
+  }
+
+  form {
+    margin: 1rem auto; /* essai centrage*/
+  }
+}
+
+/* Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) {
+/* page panier */
+  #cart-page {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  #order, #formulaire {
+    margin-top: 2.5rem;
+  }
+
+  #order {
+    min-width: 420px;
+    max-width: 600px;
   }
 }

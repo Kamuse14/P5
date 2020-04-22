@@ -1,0 +1,134 @@
+/*--------------------------------------------------*/
+          /*SOMMAIRE*/
+/*--------------------------------------------------*/
+/*
+  Ligne 016 - page - LISTE des PRODUITS
+    
+  Ligne 151 - page - DETAIL du PRODUIT SELECTIONNE
+         
+  Ligne 213 - Responsivity
+*/
+
+/*  /////////////////// page - LISTE des PRODUITS //////////////////////// */
+section h2 {
+	text-align: left;
+	margin-left: 2rem;
+}
+
+figure {
+	background-color: var(--bg-light-color);
+	box-shadow: 2px 2px 10px #F3E9F1;
+	width: 80%;
+	height: auto;
+	margin: 2rem auto;
+	padding-bottom: 1rem;
+}
+
+figure[id*="meuble"] {
+	cursor: pointer;
+}
+
+figure img, figcaption, figure p, figure h3 {
+	margin: 1.2rem 1rem 1.2rem auto;
+	padding: 0 0.5rem;
+	text-align: center;
+}
+
+figure img {
+	max-width: 95%;
+	max-height: 60%;
+}
+
+figcaption {
+	color: var(--bg-orange);
+	font-size: 1.8em;
+
+}
+
+figure h3 {
+	color: var(--txt-color);
+}
+
+#contenu {
+	margin-bottom: 50vh;
+	text-align: center;
+}
+
+/*  /////////////////// page - DETAIL du PRODUIT SELECTIONNE //////////////////////// */
+select #mon-vernis {
+	width: 80%;
+	text-align: center;
+	border-radius: 5px;
+	color: var(--bg-violet);
+}
+
+#addbtn {
+	padding: 2rem;
+}
+
+#addbtn h3 {
+	font-size: 2em;
+}
+
+/* //////////////////////////// RESPONSIVITY //////////////////////////// */ 
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) { 
+	#contenu {
+			margin-bottom: 28vh;
+		}
+}
+
+/* Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) { 
+	
+/* page produit */
+	figure {
+		width: 90%;
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		padding: 0.7rem;
+	}
+	figure img {
+		max-width: 30%;
+		margin-left: 1rem;
+	}
+	div[id*="content"] {
+		max-width: 35%;
+	}
+	div[id*="content"] figcaption {
+		font-size: 1.5em;
+	}
+	div[id*="content"] p {
+		font-size: 0.8em;
+	}
+
+	#addbtn {
+		max-width: 30%;
+		margin-right: 1rem;
+	}
+
+	figcaption, figure p, select #mon-vernis{
+		text-align: left;
+	}
+
+	select #mon-vernis {
+		width: 100%;
+		max-width: 250px;
+	}
+
+/* Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) {
+/* page produit */
+	figure {
+		width: 80%;
+		padding: 2rem;
+	}
+	figure figcaption {
+		font-size: 1.6em;
+	}
+	figure h3 {
+		font-size: 1.7em;
+	}
+
+}
