@@ -2,18 +2,14 @@
 					/*SOMMAIRE*/
 /*--------------------------------------------------*/
 /*
-	Ligne 000 - Base (Polices et général)
-	Ligne 000 - Utils (variables)
-	Ligne 000 - Layout (header, footer)
-	Ligne 000 - Components
-	 	 -> 
-	 	 -> 
-	 	
-	Ligne 000  - Pages (accueil, meuble1,2,3,4 ou 5, panier, confirmation )
-		 -> page d'accueil
+	Ligne 020 - Base (Polices et général)
+	Ligne 031 - Utils (variables)
+	Ligne 043 - Layout (header, footer)
+	Ligne 104 - Components (icones et boutons)
+	Ligne 164 - Responsivity
 
-		 
-	Ligne 000 - Responsivity
+	products.css	- pages liste de produits et détail du produit sélectionné
+	modales.css		- pages panier/attente/validation
 */
 
 
@@ -186,11 +182,6 @@ button:hover {
 		min-width: 350px;
 	}
 
-	/* section */ 
-	#contenu {
-		margin-bottom: 28vh;
-	}
-	
 	/* footer*/
 	footer {
 		display: flex;

@@ -77,10 +77,8 @@ select #mon-vernis {
 			margin-bottom: 28vh;
 		}
 }
-
 /* Medium devices (tablets, 768px and up)*/
 @media (min-width: 768px) { 
-	
 /* page produit */
 	figure {
 		width: 90%;
@@ -116,6 +114,7 @@ select #mon-vernis {
 		width: 100%;
 		max-width: 250px;
 	}
+}
 
 /* Large devices (desktops, 992px and up)*/
 @media (min-width: 992px) {
@@ -130,5 +129,4 @@ select #mon-vernis {
 	figure h3 {
 		font-size: 1.7em;
 	}
-
 }
