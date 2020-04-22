@@ -30,7 +30,7 @@ class Page{
         this.clearProducts(this.produitName);
         break;
       default:
-      	history.pushState({index:"index"}, "page détail", "index.html");
+      	history.pushState({"${this.produitName}":"index"}, "page liste", "index.html");
         this.title.innerText = "Nos produits";
         this.clearProducts();
         this.renderList();
