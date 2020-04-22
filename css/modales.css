@@ -1,6 +1,6 @@
 /*  /////////////////// page - PANIER //////////////////////// */
 cart {
-
+  cursor: auto;
 }
 
 cart.recap {
@@ -41,10 +41,13 @@ cart h2 {
 #close-zoom:hover {
   color: rgba(151, 83, 137, 0.7);
 }
+.fa-times {
+  cursor: pointer;
+}
 
 #commande {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 panier, registration {
@@ -55,6 +58,8 @@ panier, registration {
   margin: 2rem 1rem;
   padding: 1rem;
 }
+
+
 
 /*  /////////////// tableau de commande ////////////////////// */
 table {
@@ -91,7 +96,7 @@ thead tr th:first-child {
 }
 
 td .fa-trash-alt {
-  cursor: pointer;
+  cursor: pointer !important;
 }
 
 #total td:first-child {

@@ -11,7 +11,6 @@ class Connector{
       .then(async (response)=> {
         return await response.json();
       });
-      //console.log(data);
       return data; 
   }
 

@@ -9,7 +9,7 @@
 	 	 -> 
 	 	 -> 
 	 	
-	Ligne 000  - Pages (accueil, meuble1,2,3,4,5, panier, confirmation )
+	Ligne 000  - Pages (accueil, meuble1,2,3,4 ou 5, panier, confirmation )
 		 -> page d'accueil
 
 		 
@@ -126,6 +126,7 @@ footer li {
 /* ///////////////////////// icône panier //////////////////////////*/
 .nav-icon {
 	font-size: 2.3em;
+	cursor: pointer;
 } 
 
 .cart-btn {
@@ -146,11 +147,6 @@ footer li {
 	padding: 0 5px;
 	border-radius: 30%;
 	color: white;
-}
-
-/*  /////////////////////// alerte swal ////////////////////////////// */
-.swal2-confirm {
-	background-color: var(--bg-dark-color) !important; 
 }
 
 /*  /////////////////////// les boutons ////////////////////////////// */
