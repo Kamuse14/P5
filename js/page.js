@@ -25,12 +25,12 @@ class Page{
     console.log(this.pageActuelle);
     switch (this.pageActuelle) {
       case "produit":
-        history.pushState({index:"${this.produitName}"}, "page détail", "${this.produitName}.html");
+        //history.pushState({ index:"${this.produitName}" }, "page détail", "${this.produitName}.html");
         this.title.innerText = "Détail";
         this.clearProducts(this.produitName);
         break;
       default:
-      	//history.pushState({${this.produitName}:"index"}, "page liste", "index.html");
+      	//history.pushState({ ${this.produitName}:"index" }, "page liste", "index.html");
         this.title.innerText = "Nos produits";
         this.clearProducts();
         this.renderList();
