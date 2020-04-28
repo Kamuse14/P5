@@ -26,8 +26,8 @@ li {
 
 /* //////////////////////////// UTILS //////////////////////////////// */
 
-:root /* Définition des couleurs */
-{	/*header et footer*/
+:root /* Définition des couleurs dans tout le document*/
+{	
 	--bg-color: #F3E9F1;
 	--bg-light-color: #FBF7FA;
 	--bg-dark-color: #975389;

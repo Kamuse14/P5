@@ -2,7 +2,6 @@
 class Panier {
 	constructor(target){ // cible dans laquelle on va implémenter les meubles
 		this.products		= []; 
-		
 		this.recupPanier();
 
 		this.type			= "icone";
@@ -26,8 +25,6 @@ class Panier {
 				break;
 			case "recap":
 				this.enteteRecap();
-				this.renderRecap();
-				this.renderForm();
 				break;
 			case "waiting":
 				this.renderWaiting();
@@ -108,7 +105,7 @@ class Panier {
 								</tr>
 							</thead>
 							<tbody>
-								${this.renderRecap()}
+								${this.renderRecap()} 
 							</tbody>
 						</table>
 					</panier>
@@ -153,7 +150,7 @@ class Panier {
 		this.render();
 	}
 
-	renderForm() { // rendu du formulaire (non fonctionnel)
+	renderForm() { // rendu du formulaire
 		let formulaire = ""; 
 		formulaire = `
 			<h2>Vos coordonnées </h2>

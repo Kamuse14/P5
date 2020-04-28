@@ -15,17 +15,17 @@ class Connector{
   }
 
   async postData(chemin, postdata) {
-     let data = await fetch(this.url+chemin, {
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }, 
-      method: 'POST',
-      body : JSON.stringify(postdata)
+    let data = await fetch(this.url+chemin, {
+	    headers: {
+	       'Accept': 'application/json',
+	       'Content-Type': 'application/json'
+	     }, 
+	    method: 'POST',
+	    body : JSON.stringify(postdata)
     })
-      .then(async (response)=> {
-        return await response.json();
-      });
-     return data;  
+      	.then(async (response)=> {
+	        return await response.json();
+	      });
+	    return data;  
   }
 }

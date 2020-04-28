@@ -150,8 +150,9 @@ input {
 /*  /////////////////// modale - VALIDATION //////////////////////// */
 /*  /////////////////// modale - attente //////////////////////// */
 #attente {
-  width: 10vh;
-  height: 6vh;
+  width: 15vh;
+  height: 10vh;
+  justify-content: center;
 }
 /* les points de suspension avant la modale validation */
 #attente:hover {
@@ -205,16 +206,12 @@ input {
 
 .valid {
   color: black;
-  font-size: 2em;
+  font-size: 1.5em;
 }
 
 /* //////////////////////////// RESPONSIVITY //////////////////////////// */ 
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) { 
-  .form-group {
-    flex-direction: row;
-  }
-
   input {
     margin: 0 2rem 0.5rem auto;
     min-width: 300px;
@@ -234,16 +231,27 @@ input {
   }
 
   /* formulaire */
-  #formulaire {
-    width: 550px;
+  registration {
+    max-width: 400px;
   }
 
   #formulaire h2 {
     margin-left: 0;
   }
 
+  label {
+    min-width: 80px;
+  }
+
   form {
-    margin: 1rem auto; /* essai centrage*/
+    margin: 1rem auto; 
+  }
+
+  .form-group {
+    flex-direction: row;
+  }
+  input {
+    max-width: 300px;
   }
 }
 

@@ -1,14 +1,13 @@
 // DONNEES d'un produit
 class Produit{
 	constructor(data, type, target){
-		this.name = data.name.split(" ")[0];
+		this.name = data.name.split(" ")[0]; // ce qui est après l'espace n'est pas pris en compte
 		this.nameLong = data.name;
 		this.price = data.price/100;
 		this.description = data.description;
 		this.image = data.imageUrl;
 		this.vernis = data.varnish;
 		this.id = data._id;
-		//this.meuble = {};
 
 		window.mvp.products[this.name] = this;
 		this.type = type;
