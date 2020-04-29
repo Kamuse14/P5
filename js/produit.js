@@ -1,7 +1,14 @@
-// DONNEES d'un produit
 class Produit{
+	/**
+	 * Le constructeur de la classe
+	 * @constructor
+	 * @param  {JSON} data les données de chaque produit
+	 * @param  {} type forme de l'affichage (en liste ou en détail)
+	 * @param  {HTMLelement} target l'endroit où sera injecté le composant
+	 * @return {Produit}
+	 */
 	constructor(data, type, target){
-		this.name = data.name.split(" ")[0]; // ce qui est après l'espace n'est pas pris en compte
+		this.name = data.name.split(" ")[0]; // seuls les charactères avant l'espace sont pris en compte
 		this.nameLong = data.name;
 		this.price = data.price/100;
 		this.description = data.description;
@@ -15,7 +22,11 @@ class Produit{
 		target.appendChild(this.dom);
 		this.render();
 	}
-//bascule d'un rendu à un autre 
+
+	/**
+	 * Génère le html du composant. Décide le bon affichage en fonction de this.type
+	 * @return {void}
+	 */
 	render(){
 		this.dom.innerHTML = ``;
 		switch (this.type) {
@@ -30,7 +41,11 @@ class Produit{
 		        break;
 		}
 	}
-// contenu de chaque produit dans sa mise en page "liste"
+
+	/**
+	 * Génère le rendu html de chaque produit dans sa mise en page type = "liste"
+	 * @return {HTMLelement} affichage liste des produits
+	 */
 	renderListe(){ 
 		this.dom.innerHTML += `
 			<figure id="meuble${this.name}" class="meuble" onclick="window.mvp.page.change('produit/${this.name}')">
@@ -40,7 +55,11 @@ class Produit{
 			</figure>
 		`;
 	}
-// contenu du produit sélectionné
+
+	/**
+	 * Génère le rendu html du produit sélectionné 
+	 * @return {HTMLelement} affichage du produit sélectionné
+	 */
 	renderDetail(){
 		let vernis = ""; 
 		for (let i=0; i<this.vernis.length; i++) {
@@ -66,6 +85,10 @@ class Produit{
 		`;
 	}
 
+	/**
+	 * Supprime les données du produit et son noeud html
+	 * @return {void}
+	 */
 	die(){
 		this.dom.parentNode.removeChild(this.dom);
 		delete(window.mvp.products[this.name]);

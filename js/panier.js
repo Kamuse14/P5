@@ -1,30 +1,33 @@
-// récupération des objets "meubles" pour les ajouter au panier
 class Panier {
-	constructor(target){ // cible dans laquelle on va implémenter les meubles
+	
+	/**
+	 * Le constructeur de la classe
+	 * @constructor
+	 * @param  {HTMLelement} target l'endroit où sera injecté le composant
+	 * @return {Panier}
+	 */
+	constructor(target){
 		this.products		= []; 
 		this.recupPanier();
-
 		this.type			= "icone";
 		this.dom			= document.createElement("cart");
 		window.mvp.panier	= this;
 		target.appendChild(this.dom);
 		this.render();
-
-		this.prenom = sessionStorage.getItem("prenom");
-		this.nom = sessionStorage.getItem("nom");
-		this.adresse = sessionStorage.getItem("adresse");
-		this.ville = sessionStorage.getItem("ville");
-		this.electronique = sessionStorage.getItem("electronique");
 	}
 
-	render(){ // les différents rendus de la fenêtre modale
+	/**
+	 * Génère le html du composant. Décide le bon affichage en fonction de this.type
+	 * @return {void}
+	 */
+	render(){
 		this.dom.innerHTML = ``;
 		switch (this.type) {
 			case "icone":
 				this.renderIcon();
 				break;
 			case "recap":
-				this.enteteRecap();
+				this.renderRecap();
 				break;
 			case "waiting":
 				this.renderWaiting();
@@ -38,7 +41,11 @@ class Panier {
 			}
 	}
 	
-	renderIcon(){ // rendu de l'icône "panier"
+	/**
+	 * Génère le html de l'icône "panier"
+	 * @return {HTMLelement} icône panier avec son indice
+	 */
+	renderIcon(){ 
 		this.dom.className = "";
 		this.dom.innerHTML =  `
 	      <span class="nav-icon" onclick="window.mvp.panier.zoom()">
@@ -48,11 +55,20 @@ class Panier {
 		`;
 	}
 
-	zoom(){ // rendu du modale (panier + formulaire)
+	/**
+	 * Bascule du type "icone" au type "recap" (ouverture d'un fenêtre modale : panier + formulaire)
+	 * @return {void}
+	 */
+	zoom(){
 		this.type = "recap";
 		this.render();
 	}
 
+	/**
+	 * Stoppe la propagation de l'évènement et les comportements par défaut
+	 * @param  event
+	 * @return {[type]}
+	 */
 	navIcon(event){ // retour au rendu renderIcon()
 		var event = event || window.event;
 		event.stopPropagation(); //stoppe la propagation de l'évènement
@@ -61,7 +77,11 @@ class Panier {
 		this.render();
 	}
 
-	recupPanier() {//récupération des données du localStorage
+	/**
+	 * Récupère les données des produits à partir du localStorage
+	 * @return {array}
+	 */
+	recupPanier() {
 		let recupStorage = JSON.parse(localStorage.getItem("panier"));
 		if(recupStorage) {
 			for(let i=0; i<recupStorage.length; i++) {
@@ -70,14 +90,23 @@ class Panier {
 		}
 	}
 
-	ajouteProduit(produit, render=true){ //on pousse le produit dans le tableau "products"
+	/**
+	 * Pousse le produit dans le tableau "products"
+	 * @param  {JSON} produit un json contenant les informations du produit
+	 * @param  {Boolean} render permet de déclencher le rendu du composant
+	 * @return {void}
+	 */
+	ajouteProduit(produit, render=true){
 		this.products.push(produit);
 		localStorage.setItem("panier", JSON.stringify(this.products));
-		//console.log(localStorage);
 		if (render) this.render();
 	}
 
-	totalPanier() { //calcul du total du panier
+	/**
+	 * Calcule le total du panier
+	 * @return {Number} le montant total des produits ajoutés
+	 */
+	totalPanier() {
 		let total = 0;
 		for(let produit of this.products) {
 			total += parseInt(produit.price);
@@ -85,7 +114,11 @@ class Panier {
 		return total;
 	}
 
-	enteteRecap() { // entête de la commande
+	/**
+	 * Génère le rendu de la fenêtre modale (panier + formulaire)
+	 * @return {HTMLelement}
+	 */
+	renderRecap() { 
 		this.dom.className = "recap";
 		this.dom.innerHTML =  `
 			<modale id="modale">
@@ -105,7 +138,7 @@ class Panier {
 								</tr>
 							</thead>
 							<tbody>
-								${this.renderRecap()} 
+								${this.renderProduitPanier()} 
 							</tbody>
 						</table>
 					</panier>
@@ -117,7 +150,11 @@ class Panier {
 		`;
 	}
 
-	renderRecap(){ // lignes des produits de la commande et total
+	/**
+	 * Génère le rendu d'une partie du tableau de commande (les lignes des produits de la commande et le total)
+	 * @return {HTMLelement}
+	 */
+	renderProduitPanier(){ // 
 		let lignePanier = "";
 		for (let produit of this.products) {
 			lignePanier += `
@@ -138,7 +175,12 @@ class Panier {
 		return lignePanier;
 	}
 
-	supprimeProduitPanier(id) { // ne fonctionne pas 
+	/**
+	 * Supprime un produit du panier
+	 * @param  {String} id identifiant des produits
+	 * @return {array}
+	 */
+	supprimeProduitPanier(id) { 
 		const tmpProductList = this.products;
 		localStorage.removeItem("panier");
 		this.products = [];
@@ -150,7 +192,11 @@ class Panier {
 		this.render();
 	}
 
-	renderForm() { // rendu du formulaire
+	/**
+	 * Génère le rendu du formulaire
+	 * @return {HTMLelement}
+	 */
+	renderForm() {  
 		let formulaire = ""; 
 		formulaire = `
 			<h2>Vos coordonnées </h2>
@@ -191,7 +237,30 @@ class Panier {
 		return formulaire;
 	}
 	
-	renderSuccess() { // dernière page : validation de la commande avec son total et orderId
+	/**
+	 * Génère le rendu entre l'envoi du formulaire et la réception de l'orderId
+	 * @return {HTMLelement}
+	 */
+	renderWaiting(){
+		this.dom.innerHTML =  `
+		<modale id="modale">
+			<div id="attente">
+				<p>Attente du serveur</p>
+				<div id="ellipsis">
+					<span class="point point--1"></span>
+					<span class="point point--2"></span>
+					<span class="point point--3"></span>
+				</div>
+			</div>
+		</modale>
+		`;
+	}
+
+	/**
+	 * Génère la dernière page : validation de la commande avec son total et orderId
+	 * @return {HTMLelement}
+	 */
+	renderSuccess() { // 
 		this.dom.innerHTML = `
 			<modale id="modale">
 				<div id="confirm" >
@@ -215,22 +284,11 @@ class Panier {
 		`;
 	} 
 
-	renderWaiting(){ // rendu entre l'envoi du formulaire et la réception de l'orderId
-		this.dom.innerHTML =  `
-		<modale id="modale">
-			<div id="attente">
-				<p>Attente du serveur</p>
-				<div id="ellipsis">
-					<span class="point point--1"></span>
-					<span class="point point--2"></span>
-					<span class="point point--3"></span>
-				</div>
-			</div>
-		</modale>
-		`;
-	}
-
-	async send(){ // ce qui est envoyé à l'API 
+	/**
+	 * Envoie les données de la commande à l'API et récupère l'orderId
+	 * @return {string}
+	 */
+	async send(){
 		this.type = "waiting";
 		this.render();
 		let productsId = [];
@@ -247,12 +305,22 @@ class Panier {
 			},
 			"products": productsId 
 		}
-		// réponse de l'API
+		
+		/**
+		 * réponse de l'API
+		 * @type {string}
+		 */
 		this.apiAnswer	= await window.mvp.dataBase.postData("furniture/order", data);
 		this.type		= "success";
 		this.render();
 	}
 
+	/**
+	 * Définit les paires clés/valeurs pour les enregistrer dans le sessionStorage
+	 * @param  {string} key les clés du formulaire (firstname, lastname...)
+	 * @param  {string} value les valeurs renseignées par l'utilisateur
+	 * @return {void}
+	 */
 	update(key, value){
 		this[key] = value;
 		sessionStorage[key]=value;

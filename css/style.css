@@ -19,7 +19,9 @@
 body {
 	font-family: 'Noto Serif';
 	margin: 0;
+	margin-bottom: -17px;
 }
+
 li {
   list-style: none;
 }
@@ -61,7 +63,6 @@ h1 {
 
 /* //////////////////////////// footer //////////////////////////////// */
 footer {
- 	position: fixed;
  	bottom: 0;
  	background-color: var(--bg-color);
 	height: auto;
@@ -184,7 +185,8 @@ button:hover {
 
 	/* footer*/
 	footer {
-		display: flex;
+	 	position: fixed;
+	 	display: flex;
  		justify-content: space-around;
 	}
 	footer h2 {

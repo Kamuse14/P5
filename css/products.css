@@ -50,7 +50,7 @@ figure h3 {
 }
 
 #contenu {
-	margin-bottom: 50vh;
+	margin-bottom: 11vh;
 	text-align: center;
 }
 
@@ -63,19 +63,25 @@ select #mon-vernis {
 }
 
 #addbtn {
-	padding: 2rem;
+	padding: 1.2rem;
 }
 
 #addbtn h3 {
-	font-size: 2em;
+	font-size: 1.5em;
+	margin: 0.5rem 0;
 }
 
 /* //////////////////////////// RESPONSIVITY //////////////////////////// */ 
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) { 
 	#contenu {
-			margin-bottom: 28vh;
-		}
+		margin-bottom: 28vh;
+	}
+	#addbtn h3 {
+		font-size: 2em;
+		margin: auto;
+		margin-bottom: 1.5rem;
+	}
 }
 /* Medium devices (tablets, 768px and up)*/
 @media (min-width: 768px) { 

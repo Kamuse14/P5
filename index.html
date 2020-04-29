@@ -21,14 +21,12 @@
 
   <script type="text/javascript">
     window.mvp = {
-      "products": {},
-      //"panier": {},
-      // database
+      "products": {}
     }
 
     function initPage(contexte){
       new Connector("http://localhost:3000/api/");
-      new Page(document.getElementsByTagName("section")[0], contexte);
+      new Page(document.getElementsByTagName("main")[0], contexte);
       new Panier(document.getElementById("cart"));
     }
   </script>
@@ -49,9 +47,9 @@
     </div>
   </header>
 
-  <section id="contenu">
+  <main id="contenu">
       <!-- contenu généré en JS pour l'affichage liste ou l'affichage détail produit --> 
-  </section>
+  </main>
 
   <footer>
     <div id="stores">
