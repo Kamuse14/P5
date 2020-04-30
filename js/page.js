@@ -85,7 +85,7 @@ class Page{
   }
 
   /**
-   * Génère un titre pour this.pageActuelle
+   * Génère un titre pour l'affichage de this.pageActuelle
    * @return {HTMLelement} titre h2 (Nos produits || Détail)
    */ 
   createTitle(){
