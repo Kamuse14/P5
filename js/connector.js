@@ -15,7 +15,7 @@ class Connector{
   /**
    * Gère les requêtes et les réponses de l'api en asynchrone pour récupérer les données des produits
    * @param  {string} chemin dernière partie de l'url
-   * @return {produit.JSON}  retourne les données des produits  
+   * @return {produit:JSON}  retourne les données des produits  
    */
    async getData(chemin) {
     let data = await fetch(this.url+chemin)

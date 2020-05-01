@@ -51,12 +51,11 @@ class Page{
 
   /**
    * Supprime tous les produits de la liste sauf celui qu'on a sélectionné pour pouvoir afficher son détail
-   * @param  {string} keep la clé sélectionnée qui va être "gardée" pour être réutilisée
-   * @return {void}      
+   * @param  {produit:JSON} keep la clé sélectionnée qui va être "gardée" pour être réutilisée
+   * @return {JSON}      
    */
   clearProducts(keep=null){
-    for (let [key, value] of Object.entries(window.mvp.products)) { //renvoie un tableau des propriétés
-        // énumérables d'un objet dont la clé est une chaîne de caractères.
+    for (let [key, value] of Object.entries(window.mvp.products)) {
         if(key === keep) window.mvp.products[key].renderDetail(); //pour la clé = nom du produit cliqué : 
         //renderDétail du produit
         else window.mvp.products[key].die(); //on supprime les autres
@@ -65,7 +64,7 @@ class Page{
 
   /**
    * Va chercher les données des produits dans l'api grâce au connector
-   * @return {produit.JSON} les produits affichés sous forme de liste
+   * @return {produit:JSON} les produits affichés sous forme de liste
    */
   async renderList(){
     let data = await window.mvp.dataBase.getData("furniture");
