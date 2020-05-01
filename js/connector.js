@@ -1,8 +1,6 @@
-// Utilisation d'une promesse avec fetch pour effectuer une requête vers l'API
-
 class Connector{
   /**
-   * [constructor description]
+   * Le constructeur de la classe
    * @constructor
    * @param  {string} url adresse de l'api
    * @return {Constructor}  
@@ -29,7 +27,7 @@ class Connector{
    * Gère les requêtes et les réponses de l'api en asynchrone pour récupérer un orderId
    * @param  {string} chemin dernière partie de l'url de validation de commande
    * @param  {JSON} postdata le contact et le panier
-   * @return {orderId.JSON}      retourne l'identifiant de commande
+   * @return {orderId:JSON}      retourne l'identifiant de commande
    */
   async postData(chemin, postdata) {
     let data = await fetch(this.url+chemin, {
