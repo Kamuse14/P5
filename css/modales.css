@@ -140,6 +140,9 @@ label {
   display: flex;
   font-weight: 700
 }
+.required {
+  color: red;
+}
 input {
   margin-bottom: 0.5rem;
 }

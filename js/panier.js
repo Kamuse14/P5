@@ -203,31 +203,31 @@ class Panier {
 			<form id="formulaire" onsubmit="mvp.panier.send()">
 				<div class="form-group">
 					<label for="firstName">
-						Prénom : 
+						Prénom<span class="required">*</span> : 
 					</label>
 					<input id="firstName" class="form-control" type="text" pattern="[A-Z][a-z]{1,}" placeholder="Prénom" name="firstName" onchange="mvp.panier.update('firstName', this.value)" required />
 				</div>
 				<div class="form-group">
 					<label for="lastName">
-						Nom : 
+						Nom<span class="required">*</span> : 
 					</label>
 					<input id="lastName" class="form-control" type="text" pattern="[A-Z][a-z]+" placeholder="Nom" name="lastName" onchange="mvp.panier.update('lastName', this.value)" required />
 				</div>
 				<div class="form-group">
 					<label for="address">
-						Adresse : 
+						Adresse<span class="required">*</span> : 
 					</label>
 					<input id="address" class="form-control" name="address" onchange="mvp.panier.update('address', this.value)" required />
 				</div>
 				<div class="form-group">
 					<label for="city">
-						Ville : 
+						Ville<span class="required">*</span> : 
 					</label>
 					<input id="city" class="form-control" name="city" onchange="mvp.panier.update('city', this.value)" required />
 				</div>
 				<div class="form-group">
 					<label for="email">
-						Email : 
+						Email<span class="required">*</span> : 
 					</label>
 					<input id="email" class="form-control" type="email" placeholder="utilisateur@domaine.fr" name="email" onchange="mvp.panier.update('email', this.value)" required />
 				</div>
